@@ -86,5 +86,3 @@ Every skill file follows this structure:
 **Future skills flagged (not yet built):** Country Engagement Brief, Do No Harm Standalone, PRA Eligibility Advisory.
 
 ---
-
-*Maintained by the World Bank FCV Group. For questions, contact the FCV Country Coordinator team.*
