@@ -1,6 +1,6 @@
 # FCV mAI Skills Package
 
-A set of 11 AI-assisted workflow skills for the **World Bank FCV (Fragility, Conflict & Violence) Group**, built for the [mAI platform](https://ai.worldbank.org/mai). Skills support FCV Country Coordinators and specialist staff in recurring analytical, review, and advisory tasks.
+A set of 11 AI-assisted workflow skills for the **FCV (Fragility, Conflict & Violence) Group**, built for the [mAI platform](https://ai.worldbank.org/mai). Skills support FCV Country Coordinators and specialist staff in recurring analytical, review, and advisory tasks.
 
 ---
 
