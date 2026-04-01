@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>FCV mAI Skills — Toolkit Map</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: #f4f5f7;
+    color: #1a1a2e;
+    padding: 32px;
+  }
+
+  h1 {
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+    color: #1a1a2e;
+    margin-bottom: 4px;
+    letter-spacing: 0.3px;
+  }
+
+  .subtitle {
+    text-align: center;
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 32px;
+  }
+
+  /* ── Tier grid ─────────────────────────────── */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: 1100px;
+    margin: 0 auto 48px auto;
+  }
+
+  .tier {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  }
+
+  .tier-header {
+    padding: 12px 16px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: #fff;
+  }
+
+  .tier-desc {
+    font-size: 11px;
+    font-weight: 400;
+    opacity: 0.85;
+    margin-top: 2px;
+  }
+
+  .tier-body {
+    background: #fff;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  /* Tier colours */
+  .core .tier-header    { background: #1b6ca8; }
+  .prod .tier-header    { background: #2e8b6e; }
+  .util .tier-header    { background: #6b6b8a; }
+
+  /* ── Skill cards ──────────────────────────── */
+  .skill {
+    border-radius: 6px;
+    padding: 9px 12px;
+    font-size: 12px;
+    border-left: 4px solid;
+    background: #f9fafb;
+    position: relative;
+  }
+
+  .skill-name {
+    font-weight: 600;
+    font-size: 12.5px;
+    margin-bottom: 2px;
+  }
+
+  .skill-id {
+    font-size: 10px;
+    font-family: monospace;
+    opacity: 0.55;
+    margin-bottom: 4px;
+  }
+
+  .skill-desc {
+    font-size: 11px;
+    color: #444;
+    line-height: 1.4;
+  }
+
+  /* Tier accent colours for cards */
+  .core .skill { border-color: #1b6ca8; }
+  .prod .skill { border-color: #2e8b6e; }
+  .util .skill { border-color: #6b6b8a; }
+
+  /* New skill highlight */
+  .skill.new-skill {
+    background: #f0f9f5;
+    border-color: #1f8a62;
+  }
+
+  .new-badge {
+    display: inline-block;
+    font-size: 9px;
+    padding: 1px 5px;
+    border-radius: 8px;
+    background: #1f8a62;
+    color: #fff;
+    font-weight: 700;
+    margin-left: 6px;
+    vertical-align: middle;
+    letter-spacing: 0.3px;
+  }
+
+  .moved-badge {
+    display: inline-block;
+    font-size: 9px;
+    padding: 1px 5px;
+    border-radius: 8px;
+    background: #e07b20;
+    color: #fff;
+    font-weight: 700;
+    margin-left: 6px;
+    vertical-align: middle;
+    letter-spacing: 0.3px;
+  }
+
+  /* Tags */
+  .tag {
+    display: inline-block;
+    font-size: 9.5px;
+    padding: 1px 6px;
+    border-radius: 10px;
+    font-weight: 600;
+    margin-top: 5px;
+    margin-right: 3px;
+    letter-spacing: 0.2px;
+  }
+
+  .tag-review     { background: #dde9f5; color: #1b6ca8; }
+  .tag-draft      { background: #d9f0e8; color: #1f7053; }
+  .tag-analyse    { background: #fde8d0; color: #a0521a; }
+  .tag-evidence   { background: #eee8f5; color: #5a3d8a; }
+  .tag-nav        { background: #e9e9f0; color: #444466; }
+  .tag-portfolio  { background: #fff0d9; color: #8a5a00; }
+
+  /* ── Links legend ─────────────────────────── */
+  .links-section {
+    max-width: 1100px;
+    margin: 0 auto 32px auto;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    padding: 20px 24px;
+  }
+
+  .links-section h2 {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #333;
+    margin-bottom: 14px;
+  }
+
+  .links-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px 32px;
+  }
+
+  .link-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 12px;
+  }
+
+  .arrow {
+    white-space: nowrap;
+    font-weight: 700;
+    color: #888;
+    font-size: 11px;
+    min-width: 22px;
+    margin-top: 1px;
+  }
+
+  .link-text strong {
+    font-weight: 600;
+  }
+
+  .link-text {
+    color: #333;
+    line-height: 1.45;
+  }
+
+  /* ── Notes box ───────────────────────────── */
+  .notes-box {
+    max-width: 1100px;
+    margin: 0 auto 24px auto;
+    background: #fffbf0;
+    border: 1px solid #f0d080;
+    border-radius: 8px;
+    padding: 12px 18px;
+    font-size: 11.5px;
+    color: #5a4800;
+    line-height: 1.6;
+  }
+
+  .notes-box strong { font-weight: 600; }
+
+  /* ── Legend ───────────────────────────────── */
+  .legend {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    flex-wrap: wrap;
+    font-size: 11px;
+    color: #555;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  hr.divider {
+    max-width: 1100px;
+    margin: 24px auto;
+    border: none;
+    border-top: 1px solid #ddd;
+  }
+</style>
+</head>
+<body>
+
+<h1>FCV mAI Skills — Toolkit Map</h1>
+<p class="subtitle">World Bank FCV Group · mAI Platform (ai.worldbank.org/mai) · April 2026</p>
+
+<!-- ══════════════ CHANGE NOTE ══════════════ -->
+<div class="notes-box">
+  <strong>Recent changes (April 2026, pre-rollout refinements):</strong>
+  <strong>Project Screener</strong> restructured — Stage 2 now produces dynamic analytical themes (not a fixed 12-row OST table), Do No Harm synthesis paragraph, and structured action cards in Stage 3; strict S/R/S+R definitions and word caps added.
+  <strong>RRA Mini Update</strong> — new Step 3.5 research check-in (confirms themes, audience, and format before drafting); Step 2 baseline pause strengthened.
+  All skills updated: AI disclaimer now appears on final outputs only (not mid-step pauses); Skills Used footer added to every analytical output.
+  <em>Previous changes (March 2026): ISR Flag Reviewer retired → replaced by ISR Portfolio Scanner. Risk Briefing Generator moved from Core to Productivity.</em>
+</div>
+
+<!-- ══════════════ TIER GRID ══════════════ -->
+<div class="grid">
+
+  <!-- CORE -->
+  <div class="tier core">
+    <div class="tier-header">
+      Tier 1 — Core Skills
+      <div class="tier-desc">Deep analytical workflows — structured, multi-step</div>
+    </div>
+    <div class="tier-body">
+
+      <div class="skill">
+        <div class="skill-id">fcv-project-screener</div>
+        <div class="skill-name">Project Screener</div>
+        <div class="skill-desc">3-stage FCV screening of PADs, PCNs, PIDs, AFs and ISRs. Stage 2 produces dynamic analytical themes (derived from 12 OST recs and Do No Harm), synthesis paragraphs, and S/R ratings. Stage 3 produces structured action cards. Quick Flag mode available.</div>
+        <span class="tag tag-review">Review</span>
+        <span class="tag tag-analyse">Analyse</span>
+      </div>
+
+      <div class="skill">
+        <div class="skill-id">fcv-cpf-peer-reviewer</div>
+        <div class="skill-name">CPF Peer Reviewer</div>
+        <div class="skill-desc">4-phase peer review of CPF packages. Evidence log, gap inventory, severity classification, and 1,000–1,200 word peer review memo.</div>
+        <span class="tag tag-review">Review</span>
+      </div>
+
+      <div class="skill">
+        <div class="skill-id">fcv-rra-section-drafter</div>
+        <div class="skill-name">RRA Section Drafter</div>
+        <div class="skill-desc">Collaborative drafting of RRA sections. Retrieves RRA methodology and country evidence. Iterative refinement workflow — coordinator drives, skill assists.</div>
+        <span class="tag tag-draft">Draft</span>
+      </div>
+
+      <div class="skill">
+        <div class="skill-id">fcv-risk-briefing-generator</div>
+        <div class="skill-name">Risk Briefing Generator</div>
+        <div class="skill-desc">Maps recent FCV developments to CPF objectives. Analyses realized and potential portfolio risks per objective. Upload CPF or provide country name.</div>
+        <span class="tag tag-portfolio">Portfolio</span>
+        <span class="tag tag-analyse">Analyse</span>
+      </div>
+
+      <div class="skill">
+        <div class="skill-id">fcv-lens-note-drafter</div>
+        <div class="skill-name">FCV Lens Note Drafter</div>
+        <div class="skill-desc">Frames FCV risks, opportunities, and design considerations for a specific sector or project engagement in a given country.</div>
+        <span class="tag tag-draft">Draft</span>
+        <span class="tag tag-analyse">Analyse</span>
+      </div>
+
+      <div class="skill">
+        <div class="skill-id">fcv-rra-mini-update</div>
+        <div class="skill-name">RRA Mini Update</div>
+        <div class="skill-desc">Concise analytical update bridging an outdated RRA to the current situation. Extracts baseline, pauses for confirmation, searches for material changes, checks in on themes and format before drafting, then outputs an update note in RRA style.</div>
+        <span class="tag tag-analyse">Analyse</span>
+        <span class="tag tag-draft">Draft</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- PRODUCTIVITY -->
+  <div class="tier prod">
+    <div class="tier-header">
+      Tier 2 — Productivity Skills
+      <div class="tier-desc">Flexible, faster tools — adapt to task at hand</div>
+    </div>
+    <div class="tier-body">
+
+      <div class="skill new-skill">
+        <div class="skill-id">fcv-isr-portfolio-screener</div>
+        <div class="skill-name">ISR Portfolio Scanner <span class="new-badge">NEW</span></div>
+        <div class="skill-desc">Scans multiple ISRs across a country portfolio, single project, or sector. Identifies rating inconsistencies, stale language, coverage gaps, aggregate signals, and project-derailing FCV flags. Produces a high-level situational brief.</div>
+        <span class="tag tag-portfolio">Portfolio</span>
+        <span class="tag tag-analyse">Analyse</span>
+      </div>
+
+      <div class="skill">
+        <div class="skill-id">fcv-lessons-learned-extractor</div>
+        <div class="skill-name">Lessons Learned Extractor</div>
+        <div class="skill-desc">Multi-pass search of WBG ICRs, ISRs, and evaluations for FCV lessons. Produces a thematic synthesis note with operational implications.</div>
+        <span class="tag tag-evidence">Evidence</span>
+        <span class="tag tag-analyse">Analyse</span>
+      </div>
+
+      <div class="skill">
+        <div class="skill-id">fcv-trusted-source-analyst</div>
+        <div class="skill-name">Trusted Source Analyst</div>
+        <div class="skill-desc">Four modes: Verify, Enhance, Compare, Brief. Applies ACLED, ICG, OCHA, UNHCR, WBG internal and other trusted sources to any FCV task.</div>
+        <span class="tag tag-evidence">Evidence</span>
+        <span class="tag tag-review">Review</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- UTILITY -->
+  <div class="tier util">
+    <div class="tier-header">
+      Utility Skills
+      <div class="tier-desc">Navigation and compliance — lightweight helpers</div>
+    </div>
+    <div class="tier-body">
+
+      <div class="skill">
+        <div class="skill-id">fcv-skills-overview</div>
+        <div class="skill-name">Skills Overview</div>
+        <div class="skill-desc">Navigation hub. Presents all main skills in a table. User picks a number to launch a skill, or describes their task and the skill suggests the best match.</div>
+        <span class="tag tag-nav">Navigation</span>
+      </div>
+
+      <div class="skill">
+        <div class="skill-id">fcv-ai-disclaimer</div>
+        <div class="skill-name">AI Disclaimer</div>
+        <div class="skill-desc">Appends the standard WBG FCV AI-generated output disclaimer. Also embedded directly in every other skill — standalone use optional.</div>
+        <span class="tag tag-nav">Compliance</span>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<!-- ══════════════ LINKS ══════════════ -->
+<div class="links-section">
+  <h2>Logical links between skills</h2>
+  <div class="links-grid">
+
+    <div class="link-row">
+      <div class="arrow">→</div>
+      <div class="link-text">
+        <strong>Skills Overview</strong> → all main skills<br>
+        Entry point: user describes task, skill routes to the right tool
+      </div>
+    </div>
+
+    <div class="link-row">
+      <div class="arrow">→</div>
+      <div class="link-text">
+        <strong>ISR Portfolio Scanner</strong> → <strong>Risk Briefing Generator</strong><br>
+        Portfolio scan surfaces FCV patterns that feed directly into a CPF-linked risk briefing
+      </div>
+    </div>
+
+    <div class="link-row">
+      <div class="arrow">→</div>
+      <div class="link-text">
+        <strong>RRA Mini Update</strong> → <strong>RRA Section Drafter</strong><br>
+        Mini Update can hand off to Section Drafter to turn an update note into a full drafted section
+      </div>
+    </div>
+
+    <div class="link-row">
+      <div class="arrow">→</div>
+      <div class="link-text">
+        <strong>Trusted Source Analyst</strong> → any analytical skill<br>
+        Evidence retrieval (Verify / Enhance / Compare) can feed CPF Reviewer, Project Screener, Lens Note, or RRA Drafter
+      </div>
+    </div>
+
+    <div class="link-row">
+      <div class="arrow">→</div>
+      <div class="link-text">
+        <strong>Lessons Learned Extractor</strong> → <strong>Lens Note Drafter</strong><br>
+        Lessons output can be pasted into Lens Note to ground sector framing in WBG portfolio evidence
+      </div>
+    </div>
+
+    <div class="link-row">
+      <div class="arrow">↔</div>
+      <div class="link-text">
+        <strong>CPF Peer Reviewer</strong> ↔ <strong>Risk Briefing Generator</strong><br>
+        CPF review informs portfolio risk framing; Risk Briefing informs CPF peer review gap analysis
+      </div>
+    </div>
+
+    <div class="link-row">
+      <div class="arrow">↔</div>
+      <div class="link-text">
+        <strong>Project Screener</strong> ↔ <strong>ISR Portfolio Scanner</strong><br>
+        Screener works at design stage on individual projects; Portfolio Scanner works at implementation stage across the portfolio
+      </div>
+    </div>
+
+    <div class="link-row">
+      <div class="arrow">→</div>
+      <div class="link-text">
+        <strong>ISR Portfolio Scanner</strong> → management brief<br>
+        Built-in Step 8 produces a CMU/management-ready brief directly from the portfolio scan output
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ══════════════ LEGEND ══════════════ -->
+<div class="legend">
+  <strong style="font-size:11px; color:#333;">Function tags:</strong>
+  <div class="legend-item"><span class="tag tag-review" style="margin:0">Review</span> — assesses/checks existing documents</div>
+  <div class="legend-item"><span class="tag tag-draft" style="margin:0">Draft</span> — produces new written content</div>
+  <div class="legend-item"><span class="tag tag-analyse" style="margin:0">Analyse</span> — synthesizes evidence and produces analytical outputs</div>
+  <div class="legend-item"><span class="tag tag-portfolio" style="margin:0">Portfolio</span> — works across multiple projects or a full country portfolio</div>
+  <div class="legend-item"><span class="tag tag-evidence" style="margin:0">Evidence</span> — retrieves and applies external/internal sources</div>
+  <div class="legend-item"><span class="tag tag-nav" style="margin:0">Navigation/Compliance</span> — utility function</div>
+</div>
+
+</body>
+</html>

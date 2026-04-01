@@ -1,0 +1,20 @@
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Python
+*.pyc
+__pycache__/
+.venv/
+.env
+*.key
+*credentials*
+
+# Office / large binaries
+*.xlsx
+*.pptx
+*.pdf
+
+# Node
+node_modules/
