@@ -1478,7 +1478,139 @@ If no other FCV skills were referenced, use: *Skills used: fcv-rra-mini-update*
 
 Generates a structured Fragility, Conflict & Violence (FCV) briefing suitable for senior World Bank / development leadership. The output follows a strict 500-word analytical format with inline citations.
 
-See fcv_country_risk_scan.md file for full content.
+---
+
+## Step 1: Intake — Collect Required Inputs
+
+Before writing anything, you must gather the following from the user. Ask conversationally; do not present a form or list of fields coldly. If the user has already provided some of these in their message, confirm or use them directly.
+
+### Required fields
+
+| Field | What to ask | Notes |
+|---|---|---|
+| **Country** | "Which country is this briefing for?" | Required. Accept common name or ISO code. |
+| **Time period** | "What time period should the briefing cover? (default: last 3 months ending today)" | If user says "latest" or "recent", default to last 3 months ending today's date. |
+| **Sector** *(optional)* | "Is there a particular sector lens for this briefing — e.g., health, education, infrastructure, finance? Or should it be a general FCV overview?" | If none, proceed with general FCV. If provided, add sector-specific framing to the conflict/institutional sections. |
+| **Title** | "What title would you like for this briefing?" | Can be auto-suggested: e.g., *"[Country] FCV Briefing — [Month Year]"* |
+| **Description / purpose** | "What's the purpose or audience context for this briefing? (e.g., pre-mission prep, quarterly review, board note)" | Used to calibrate tone and emphasis. |
+
+**Tip:** If the user gave you a country and said "write a briefing", you can ask for the remaining fields in a single short message. Do not ask more than once per field.
+
+---
+
+## Step 2: Generate the Briefing
+
+Once all required inputs are collected, generate the briefing using the full analyst prompt below. Substitute all `{variables}` before sending.
+
+### Analyst Prompt (fill all variables before use)
+
+```
+You are a Fragility, Conflict & Violence (FCV) analyst preparing a briefing for senior development leadership (e.g., World Bank Country Director).
+
+Your audience already has baseline knowledge of {country_name} and economics. They do not need primers or definitions. They need a concise but detailed overview that catches them up on the latest FCV dynamics and operational implications.
+
+**Country:** {country_name}
+**Timeframe:** Cover the last 3 months ending {today}. If essential for continuity, you may include clearly labeled **Context** items up to 6 months back.
+{sector_line}
+
+---
+
+### Task
+
+* You will be provided a concise summary of recent International Crisis Group/CrisisWatch reporting if available.
+* Treat that summary as the **backbone** of the briefing: emphasize and synthesize it.
+* Use a small number of outside sources only to corroborate, fill gaps, or capture very recent developments not in the ICG summary.
+* In the case that the summary is not available, use ICG reporting as a style guide and use your own websearch and research to write the briefing.
+* Write a **{country_name} FCV briefing**.
+* Return **only markdown** — no methodology or internal notes.
+* The entire briefing should be roughly **500 words**.
+* **STRICTLY FOLLOW:** Always start the response with **"Risk Assessment summary as follows:"**
+
+---
+
+### Briefing Sections
+
+* **Risk Overview:** Summarize the most important details in the briefing and the key FCV dynamics the reader should know.
+
+Then fill in the following 4 sections:
+
+* **Institutional fragility, political tensions, and social unrest** (governance, elections, corruption or impunity, protests, political subjugation and contestation).
+* **Conflict and violence dynamics** (jihadist or insurgent activity; intercommunal violence; organized crime, banditry, or kidnapping; security-force conduct; cross-border spillovers; climate or market shocks).
+* **Displacement and refugee dynamics** if relevant (UNHCR, IOM DTM, IDMC). If citing stock figures, note the latest update month.
+* **Sensitivities between government and development actors**: Conclude with recent frictions or alignment between development and humanitarian actors (e.g., World Bank, United Nations) and the Government of {country_name} (federal and/or state).
+
+---
+
+### Formatting Rules (Strict)
+
+* Bold **only** the section titles.
+* Do not add any title beyond the section headings.
+* Write section titles inline with their paragraphs.
+* After the first paragraph (**Risk Overview:**), use the four following subheadings tied to salient risks.
+* Subheadings must be **bold** and end with a colon (no trailing space).
+* Immediately start each paragraph after the heading do not add a new line e.g. **Risk Overview:** This is the risk overview paragraph...
+* Do not exceed 500 words.
+* Do not include a separate sources section.
+* DO NOT RETURN ANY TEXT OR COMMENTARY OUTSIDE THE BRIEFING ITSELF.
+
+---
+
+### Sources and Citations
+
+* Base the narrative primarily on recent ICG/CrisisWatch information.
+* Supplement with other trusted sources only if necessary.
+* Use websearch to ensure every factual claim has an inline hyperlink.
+* Aim for **8–10 inline hyperlinks** total.
+* Avoid more than two links from the same publisher.
+* Clearly label **Context** for any item older than one year.
+* Use inline hyperlinks only (no endnotes).
+
+**Source preference order:**
+
+1. ICG / CrisisWatch
+2. Multilateral or UN sources (OCHA, UNHCR, WFP, UNICEF, OHCHR, World Bank, UNDP, IOM DTM, IDMC)
+3. Reputable national or regional outlets from {country_name}
+4. Reputable international wires or broadcasters (Reuters, AP, BBC, Al Jazeera, VOA)
+```
+
+### Variable substitution guide
+
+| Variable | Value |
+|---|---|
+| `{country_name}` | Country name from intake |
+| `{today}` | Today's date (e.g., "1 April 2026") |
+| `{sector_line}` | If sector provided: `**Sector focus:** {sector} — weave sector-specific FCV implications (access, service disruption, aid delivery risks) into the institutional and conflict sections where relevant.` Otherwise: *(omit this line entirely)* |
+
+---
+
+## Step 3: Output
+
+After generating the briefing, present it with:
+
+1. The **title** the user provided (as an H2 heading above the briefing)
+2. The briefing body (starting with "Risk Assessment summary as follows:")
+3. A brief note at the end: *"Briefing covers [date range]. Based on open-source reporting; not a classified assessment."*
+
+If the user wants to iterate (different country, updated date, add sector lens), loop back to Step 1.
+
+---
+
+## Quality Checklist (self-review before returning)
+
+- [ ] Starts with "Risk Assessment summary as follows:"
+- [ ] All 5 sections present (Risk Overview + 4 subheadings)
+- [ ] Section titles bold, inline, followed immediately by paragraph text
+- [ ] ~500 words (do not exceed)
+- [ ] 8–10 inline hyperlinks
+- [ ] No separate sources section
+- [ ] No commentary outside the briefing itself
+- [ ] `{variables}` fully substituted — none remain as literal text
+
+---
+
+## AI Disclaimer
+
+*This skill generates analysis and briefings based on open-source information. While mAI's underlying language model has been fine-tuned with development and FCV expertise, human expertise, local knowledge, and classified intelligence should always be applied to any analysis produced by this skill. Do not treat skill outputs as formal World Bank analysis or a substitute for expert review. This output is for internal brainstorming and structured thinking only.*
 
 ---
 
@@ -1490,7 +1622,142 @@ See fcv_country_risk_scan.md file for full content.
 
 # FCV Country Portfolio Scanner
 
-See fcv_country_portfolio_scanner.md file for full content.
+Scans a World Bank country's active portfolio and generates a sector-organized overview with project status, funding, and FCV/operational relevance flags.
+
+---
+
+## Guardrails
+
+- **Data freshness:** Portfolio data pulled from mAI's internal project search reflects the most recent World Bank systems snapshot. If the user requests a specific cutoff date, note that limitation in the output.
+- **FCV flagging:** Projects are marked as "FCV-relevant" only if they explicitly address fragility, conflict, violence, resilience, peacebuilding, or security sector reform; do not over-flag routine projects.
+- **Confidentiality:** Do not include projects marked as closed or inactive unless the user specifically requests historical portfolio analysis.
+- **Funding accuracy:** Amounts reflect project approval amount, not disbursements. Clearly label as such.
+
+---
+
+## Step 1: Intake — Collect Required Inputs
+
+Ask the user conversationally for the following:
+
+| Field | What to ask | Notes |
+|---|---|---|
+| **Country** | "Which country's portfolio would you like to scan?" | Required. Accept common name or ISO code. |
+| **Sector filter** *(optional)* | "Would you like me to focus on a particular sector (e.g., health, education, governance, infrastructure, finance), or should I provide a full cross-sector overview?" | If none provided, scan full portfolio. |
+| **Status filter** *(optional)* | "Should I include only active/implementation projects, or also include planned/pipeline projects?" | Default: active only. |
+| **Output format** *(optional)* | "Would you prefer the overview as a summary table, narrative by sector, or both?" | Default: summary table with narrative highlights. |
+
+**Tip:** If the user said "scan [country] portfolio", you have the country; ask for the remaining three fields in a single conversational follow-up.
+
+---
+
+## Step 2: Retrieve Portfolio Data
+
+Use mAI's internal **project search** tool to retrieve:
+
+- All active projects in the specified country (and any planned/pipeline if requested).
+- For each project: project name, sector classification, status, approval amount, current disbursement status, project development objective (PDO).
+- Any available risk ratings or FCV flags from the project metadata.
+- **Project document links:** For each project, retrieve links to the Project Appraisal Document (PAD), Implementation Status & Results (ISR) reports, and any FCV/Safeguards assessments available in mAI's internal document store.
+
+**Search strategy:**
+- Query: "[Country name] World Bank projects active"
+- Filter by: Country = [input country], Status = Active (or Active + Pipeline if user requested)
+- Sort by: Sector, then by approval date (most recent first)
+- For each project found, use mAI's internal **document search** tool to locate: "[Project Name] PAD" and "[Project Name] ISR" to retrieve document links for inclusion in output.
+
+---
+
+## Step 3: Analyze and Organize
+
+Group projects by:
+
+1. **Primary sector** (e.g., Health, Education, Governance, Infrastructure, Finance, Social)
+2. Within each sector: **status** (Implementation, Preparation, Closed/Completed) and **FCV relevance** (High, Medium, Low/None)
+3. Calculate: Total portfolio size by sector, number of projects, average project size
+
+---
+
+## Step 4: Flag FCV-Relevant Projects
+
+For each project, assess FCV relevance:
+
+- **High:** Explicitly includes conflict sensitivity, peacebuilding, security sector reform, resilience to climate/market shocks, forced displacement response, or governance / justice sector work in FCV context.
+- **Medium:** Addresses underlying fragility drivers (human capital, economic opportunity, service delivery gaps) in a fragile country but not explicitly FCV-branded.
+- **Low/None:** Routine development in a fragile country without explicit FCV linkage.
+
+---
+
+## Step 5: Generate Output
+
+Present the portfolio overview in the requested format. **All project names should be hyperlinked** to their Project Appraisal Document (PAD) or latest ISR when available.
+
+### Format Option A: Summary Table (default)
+
+| Sector | # Projects | Total Funding (USD M) | FCV-Relevant | Key Projects | Status Snapshot |
+|---|---|---|---|---|---|
+| [Sector] | [n] | [amount] | [count] | [project names as links: e.g., "[Health Project XYZ](link-to-PAD)", 1–2 per sector] | [e.g., "3 impl., 1 prep."] |
+
+Followed by a **Narrative Summary** (250–400 words):
+
+- **Portfolio size & composition:** Overview of country portfolio (total projects, sectors, funding).
+- **Sector highlights:** 1–2 key projects or trends per major sector (e.g., "Education portfolio pivoting to inclusive primary completion; Health focused on pandemic preparedness").
+- **FCV integration:** Brief scan of FCV-relevant projects; any gaps or recommendations.
+- **Operational notes:** Any project delays, risk escalations, or coordination needs flagged in metadata.
+
+### Format Option B: Narrative by Sector (if requested)
+
+For each sector, provide:
+
+- **Sector name** (bold heading)
+- Active projects: List with [project name](link-to-document) hyperlinked to PAD or ISR, followed by PDO summary, status, and budget
+- FCV flags
+- Cross-sector linkages or dependencies
+
+### Format Option C: Both Table and Narrative (if requested)
+
+Present summary table first, then sector narratives.
+
+---
+
+## Step 5a: Document Linking Conventions
+
+When including hyperlinks to project documents:
+
+- **Link text:** Use the project's short name or acronym (e.g., "Health Project XYZ" or "HPX") for readability in tables; full project name in narrative sections.
+- **Link target:** Prioritize links to:
+  1. Most recent **Implementation Status & Results (ISR)** report (for active projects)
+  2. **Project Appraisal Document (PAD)** (if ISR unavailable)
+  3. **FCV or Safeguards Assessment** (if FCV-flagged project)
+- **Link availability:** If document links are not available in mAI's internal store, note in the output: "[Project Name] (document links unavailable in current system)".
+- **Format:** Standard markdown: `[display text](url-to-document)`
+
+---
+
+## Step 6: Conclude with Metadata Note
+
+Append a brief footer:
+
+*"Portfolio snapshot as of [today's date]. Reflects active/approved projects in World Bank systems. Funding amounts are approval values; disbursement status available upon request. FCV flagging is based on stated project objectives; local context and implementation realities may differ."*
+
+---
+
+## Quality Checklist (self-review before returning)
+
+- [ ] Country correctly identified and spelled
+- [ ] All active projects in country included (or filtered by user request)
+- [ ] Projects grouped by sector clearly
+- [ ] FCV-relevant projects correctly flagged (not over-flagged)
+- [ ] Funding amounts labeled as approval values
+- [ ] Output format matches user request (table / narrative / both)
+- [ ] **Project names hyperlinked** to PAD, ISR, or relevant documents where available
+- [ ] Metadata note included
+- [ ] No confidential or closed project details unnecessarily exposed
+
+---
+
+## AI Disclaimer
+
+*This skill generates portfolio overviews based on World Bank project data and open-source sector context. FCV relevance flagging reflects stated project objectives only and does not substitute for on-the-ground context, local expertise, or formal project performance reviews. Use this overview for brainstorming and strategic planning only; consult formal portfolio performance reports and country teams for decision-making.*
 
 ---
 
@@ -1502,7 +1769,178 @@ See fcv_country_portfolio_scanner.md file for full content.
 
 # FCV Portfolio Risk Impact Assessment
 
-See fcv_portfolio_risk_impact.md file for full content.
+Synthesizes country-level FCV risks with an active World Bank portfolio to produce a vulnerability briefing showing how identified risks threaten specific projects, sectors, and implementation timelines.
+
+---
+
+## Guardrails
+
+- **Risk-project nexus:** Link only risks that have direct or plausible operational consequences for projects (e.g., insecurity blocking field access, governance breakdown disrupting counterpart capacity, displacement affecting service demand). Do not over-connect risks to projects.
+- **Specificity:** Do not generalize. Identify specific projects vulnerable to specific risks; avoid blanket statements like "all health projects are at risk".
+- **Contingency vs. impact:** Distinguish between projects that could absorb minor disruptions (low contingency risk) and those with brittle timelines or dependent partners (high contingency risk).
+- **Probability vs. severity:** Flag both high-probability/low-severity risks and low-probability/high-severity "tail risks" that could derail projects.
+
+---
+
+## Skill Integration Note
+
+**This skill combines two prerequisite skills:**
+1. **fcv-country-risk-scan** — generates the country FCV risk briefing
+2. **fcv-country-portfolio-scanner** — generates the active portfolio overview
+
+**Preferred workflow:** If the user has not already run these skills, **activate both skills first** to generate their outputs, then proceed with this risk-impact analysis. Do not re-run risk scanning or portfolio retrieval here; consume the outputs from those skills and focus this skill's effort on cross-linking risks to projects and generating adaptive recommendations.
+
+---
+
+## Step 1: Intake & Prerequisites
+
+Ask the user:
+
+| Field | What to ask | Notes |
+|---|---|---|
+| **Country** | "Which country are we assessing?" | Required. Must match country in risk scan + portfolio scanner. |
+| **Risk scan ready?** | "Do you have a completed FCV country risk scan for this country, or should I generate one first?" | Can proceed with existing risk scan or generate new one. |
+| **Portfolio ready?** | "Do you have a portfolio scanner output for this country, or should I pull the current portfolio?" | Can proceed with existing portfolio or generate new one. |
+| **Sector focus** *(optional)* | "Would you like me to focus on particular sectors, or assess the full portfolio?" | Default: full portfolio. |
+| **Output preference** | "Would you prefer a cross-matrix (risks × projects), narrative by risk, or narrative by sector?" | Default: both matrix and narrative. |
+
+**Tip:** If the user says "assess [country]'s portfolio against risks", you have the country; generate the risk scan and portfolio from Steps 2–3 if not already available, then proceed to analysis.
+
+---
+
+## Step 2: Verify or Generate FCV Risk Scan
+
+If the user has not provided a risk scan:
+
+- **ACTIVATE the fcv-country-risk-scan skill** to generate a structured brief covering:
+  - Institutional fragility and political tensions
+  - Conflict and violence dynamics
+  - Displacement and refugee movements
+  - Government–development actor relations
+
+If the user has provided a risk scan or indicated one exists, **parse and extract key risk themes** (specific risks, actors, timelines, geographic scope).
+
+---
+
+## Step 3: Verify or Retrieve Country Portfolio
+
+If the user has not provided a portfolio:
+
+- **ACTIVATE the fcv-country-portfolio-scanner skill** to generate a sector-organized portfolio overview with:
+  - Project names, PDOs, status, and funding
+  - Sector groupings
+  - FCV relevance flags
+
+If the user has provided a portfolio output, **parse and extract project details** (name, sector, status, key dependencies, partners/counterparts).
+
+---
+
+## Step 4: Map Risk–Project Vulnerabilities
+
+Create a **risk-project nexus analysis** by cross-checking each key risk against each project:
+
+| Risk Identified | Affected Sectors | Affected Projects | Vulnerability Type | Severity | Mitigation Strategy |
+|---|---|---|---|---|---|
+| [Risk name] | [sectors most exposed] | [specific projects] | [e.g., "field access", "counterpart capacity", "demand shock"] | High/Medium/Low | [brief mitigation option] |
+
+**Vulnerability types to flag:**
+- **Field access:** Insecurity, displacement, or infrastructure disruption blocking implementation team or beneficiary access
+- **Counterpart capacity:** Political instability, executive turnover, or governance breakdown weakening government partner ability to co-implement
+- **Demand shock:** Displaced populations, market collapse, or crisis migration altering project target populations or service demand
+- **Supply chain:** Cross-border conflict, trade disruption, or commodity price shocks affecting project input or service delivery
+- **Fiduciary risk:** Corruption, informal taxation, or security-linked extortion eroding project budget or oversight
+- **Staff safety:** Deteriorating security threatening project or partner staff presence in-country
+
+---
+
+## Step 5: Generate Output — Narrative Briefing
+
+Structure the output as a **Portfolio Risk Impact Brief** (800–1,200 words):
+
+### Section 1: Executive Summary
+
+- Overall portfolio exposure: % of portfolio in high-risk sectors; # of high-vulnerability projects
+- Key tail risks: 1–2 low-probability but high-impact scenarios that could derail multiple projects
+- Recommended immediate actions: Pause points, contingency reviews, or priority reallocations
+
+### Section 2: Risk-by-Risk Portfolio Impact
+
+For each **critical risk identified in the country risk scan**:
+- Risk description (1–2 sentences)
+- Affected projects (list with links; note $ exposure)
+- Specific vulnerability pathways
+- Probability and severity
+- Recommended adjustments (e.g., accelerate disbursement, shift implementation modality, increase monitoring)
+
+### Section 3: Sector-by-Sector Resilience Assessment
+
+For each **major sector** in the portfolio:
+- Sector overview (# projects, total funding, FCV relevance)
+- Risk exposure summary (which risks most threaten this sector)
+- Green/yellow/red status indicator
+- Sector-level adaptive management recommendations
+
+### Section 4: High-Vulnerability Projects (Deep Dive)
+
+Highlight **top 3–5 highest-vulnerability projects** (by combined risk × disbursement exposure):
+- Project name (hyperlinked to PAD/ISR)
+- Risk profile (specific risks + vulnerability types)
+- Current status & disbursement timeline
+- Recommended contingencies (scenario planning options)
+
+### Section 5: Portfolio Adaptive Management Recommendations
+
+Synthesize cross-cutting recommendations:
+- **Pipeline adjustments:** New projects to fast-track, pause, or redesign
+- **Implementation modality shifts:** Move from in-person to remote monitoring; shift from community-based to nationally-managed components
+- **Contingency planning:** Trigger points for portfolio pause/rebalance; communication protocols with Government
+- **Monitoring escalation:** Indicator thresholds that trigger portfolio review or contingency activation
+
+---
+
+## Step 6: Output Formats
+
+### Format Option A: Cross-Matrix + Narrative (recommended)
+
+1. **Risk–Project Vulnerability Matrix** (table as in Step 4)
+2. **Narrative Brief** (Sections 1–5 as above)
+
+### Format Option B: Narrative Only
+
+Integrate matrix insights into flowing narrative (Sections 1–5); omit separate table.
+
+### Format Option C: Sector-Focused Narrative
+
+Reorder as: Executive Summary → Sector Resilience → Risk Deep-Dive by Sector → Adaptive Management Recommendations (instead of risk-by-risk).
+
+---
+
+## Step 7: Metadata & Caveats
+
+Conclude with:
+
+*"Risk-impact assessment as of [today's date]. Based on [country] FCV Country Risk Scan ([risk scan date]) and active portfolio as of [portfolio snapshot date]. This brief synthesizes open-source country risk reporting with internal project data. Portfolio exposure and mitigation options reflect stated project objectives and current implementation status; ground-truth verification and partner consultation required before activating contingencies. Not a formal World Bank portfolio rebalance or policy document."*
+
+---
+
+## Quality Checklist (self-review before returning)
+
+- [ ] Country correctly linked between risk scan and portfolio scanner outputs
+- [ ] All critical risks from risk scan assessed for portfolio impact (no missed risks)
+- [ ] All vulnerable projects explicitly named and linked to documents
+- [ ] Vulnerability types clearly categorized (field access, counterpart capacity, etc.)
+- [ ] Mitigations are specific and actionable, not generic
+- [ ] Sector-level summaries clearly distinguish high, medium, and low exposure
+- [ ] Output format matches user request (matrix + narrative / narrative only / sector-focused)
+- [ ] Probability and severity clearly distinguished
+- [ ] No confidential or supersensitive government data exposed
+- [ ] Metadata note and caveats included
+
+---
+
+## AI Disclaimer
+
+*This skill synthesizes country risk analysis with portfolio data to highlight plausible vulnerability pathways. It does not constitute a formal portfolio rebalancing recommendation or World Bank policy guidance. Risk-impact assessments depend heavily on implementation context and local partnership dynamics not captured in remote analysis. Always consult with Country Teams, Regional management, and Government partners before implementing contingencies or pausing projects. This output is for internal strategic dialogue and scenario planning only.*
 
 ---
 
@@ -1514,4 +1952,115 @@ See fcv_portfolio_risk_impact.md file for full content.
 
 # FCV Prompt Refiner
 
-See fcv_prompt_refiner.md file for full content.
+Guides users through a structured dialogue to clarify and refine their prompt or request, then generates an improved, actionable version.
+
+---
+
+## Guardrails
+
+- **Limit to 6 questions maximum:** Ask targeted, open-ended questions that reveal constraints, desired output format, audience, and success criteria—not clarifying questions about basic definitions or prior context.
+- **Avoid redundancy:** Do not ask the same question twice or ask overlapping questions that can be combined.
+- **Focus on actionability:** Prioritize questions that make the prompt more specific, not questions that require external research or expert knowledge.
+- **Respect user expertise:** Assume the user has domain knowledge; ask about their framing and priorities, not about definitions or background facts.
+
+---
+
+## Step 1: Capture the Initial Prompt
+
+Ask the user: "What's the prompt or request you'd like to refine?"
+
+Capture their response exactly as stated. Do not paraphrase or reinterpret yet.
+
+---
+
+## Step 2: Diagnostic Assessment
+
+Quickly scan the initial prompt for:
+
+- **Clarity:** Is the end goal explicit or implicit?
+- **Scope:** Are boundaries defined (country, timeframe, sector)?
+- **Output format:** Is the desired format specified (prose, table, briefing, list)?
+- **Audience:** Is the intended reader or user clear?
+- **Success criteria:** Are there measurable or qualitative success indicators?
+
+Identify **2–3 key gaps** that, if filled, would make the prompt more actionable.
+
+---
+
+## Step 3: Ask Up to 6 Clarifying Questions
+
+Based on the diagnostic, ask **targeted follow-up questions.** Keep questions concise and open-ended. Do not ask yes/no questions; invite explanation.
+
+**Question categories to prioritize (select up to 6):**
+
+| Priority | Question Type | Example | When to use |
+|---|---|---|---|
+| **Critical** | **End goal / success criterion** | "What will 'done' look like for you? How will you know this request has been fulfilled?" | Always—if unclear. |
+| **Critical** | **Scope / boundaries** | "Are there specific countries, sectors, timeframes, or project types you want to focus on, or should this be comprehensive?" | If scope is vague. |
+| **High** | **Output format** | "How do you plan to use this output? (e.g., for a meeting brief, a written report, a data table, a decision memo) And what length / level of detail?" | If format is unspecified. |
+| **High** | **Constraints / assumptions** | "Are there any constraints I should know about? (e.g., need it urgently, avoid certain topics, work within a specific methodology)" | If the request seems open-ended. |
+| **Medium** | **Audience / tone** | "Who's the primary reader for this, and what's their background? (e.g., technical specialist, senior leadership, peer analyst)" | If audience/tone could vary. |
+| **Medium** | **Supporting inputs** | "Do you have existing analysis, data, or documents you want me to build on, or should I start from scratch?" | If it's unclear whether existing work should be leveraged. |
+| **Low** | **Priority / trade-offs** | "If you had to prioritize between comprehensiveness and speed, which matters more?" | If the request could expand infinitely. |
+
+**Guidance:** Ask the **critical** questions first. Then pick 2–4 additional questions from **High/Medium** based on the initial prompt's weaknesses. Stop at 6 total.
+
+---
+
+## Step 4: Synthesize Responses
+
+After collecting answers:
+
+1. Restate back to the user what you understood (1–2 sentences)
+2. Identify any remaining ambiguities or trade-offs
+3. Propose refinements to make the request clearer
+
+---
+
+## Step 5: Generate Refined Prompt
+
+Write a **refined, reusable prompt** that incorporates the user's clarifications. The refined prompt should:
+
+- **Be specific:** Name countries, timeframes, sectors, or other bounds explicitly
+- **Specify output format:** Describe what "done" looks like (e.g., "a 500-word briefing with 3 tables")
+- **Include success criteria:** State how the user will evaluate completion
+- **State assumed constraints:** List audience, tone, or methodological choices
+- **Be actionable:** A colleague could read this and execute it without asking follow-up questions
+
+**Format:** Present the refined prompt as a standalone block (markdown code fence or quoted text), ready to copy and reuse.
+
+---
+
+## Step 6: Offer Iteration
+
+Ask: "Does this refined prompt capture what you're looking for? Any adjustments before we proceed?"
+
+If the user wants to adjust, incorporate their feedback and re-present the refined prompt. Limit iterations to **one or two rounds**; if significant rework is needed, suggest starting over with fresh questions.
+
+---
+
+## Step 7: Activate or Conclude
+
+Once the user confirms the refined prompt:
+
+- **Option A:** Ask "Would you like me to proceed with this request now?" (activate the relevant skill or execute the refined prompt)
+- **Option B:** Offer the refined prompt as a reusable template the user can save or pass to others
+
+---
+
+## Quality Checklist (self-review before returning refined prompt)
+
+- [ ] All 2–3 identified gaps from diagnostic addressed in questions or refined prompt
+- [ ] Refined prompt is specific (not vague or generic)
+- [ ] Output format explicitly stated
+- [ ] Success criteria or acceptance condition clear
+- [ ] Scope and boundaries defined
+- [ ] Audience or tone specified
+- [ ] Refined prompt is ~150–300 words (complete but concise)
+- [ ] Refined prompt could be executed by another analyst without follow-up
+
+---
+
+## AI Disclaimer
+
+*This skill helps structure and clarify user requests but does not execute the actual task. The quality of the refined prompt depends on the depth and honesty of the user's responses. After refining, always sense-check the refined prompt against your actual needs before proceeding.*
