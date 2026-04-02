@@ -23,6 +23,10 @@ Display this table:
 | 7 | FCV Lens Note Drafter | A new TTL needs FCV framing for their sector, or you are preparing for a sector dialogue or mission |
 | 8 | FCV Trusted Source Analyst | You want to check whether a document's claims hold up against trusted sources, or you need a fresh evidence summary |
 | 9 | RRA Mini Update | The country RRA is more than 12-18 months old and you need an update — extracts baseline, researches developments, confirms themes with you, then drafts an analytical update note |
+| 10 | Country Risk Scan | You need a structured FCV country briefing covering institutional fragility, conflict dynamics, displacement, and govt-development relations for a specific country |
+| 11 | Country Portfolio Scanner | You want a sector-organized overview of a country's active World Bank projects with FCV flags, funding, and document links |
+| 12 | Portfolio Risk Impact Assessment | You need to understand how identified country risks threaten specific projects in the portfolio — combines risk scan + portfolio scanner |
+| 13 | Prompt Refiner | Your request is vague or preliminary and you want structured help clarifying and refining it before executing a skill |
 
 ### Step 2 — Prompt the User
 

@@ -1,21 +1,25 @@
 # FCV Skills Package — Ready for mAI Upload
 
-**Instructions for mAI:** This document contains 11 FCV skills for the World Bank FCV Group. Please create or update each skill on the mAI platform using the **Name**, **Description**, and **Content** fields provided below. Each skill is separated by a horizontal rule. For skills that already exist, replace the existing content entirely with the version below. For new skills, create them fresh.
+**Instructions for mAI:** This document contains 15 FCV skills for the World Bank FCV Group. Please create or update each skill on the mAI platform using the **Name**, **Description**, and **Content** fields provided below. Each skill is separated by a horizontal rule. For skills that already exist, replace the existing content entirely with the version below. For new skills, create them fresh.
 
-**The 11 skills to upload:**
+**The 15 skills to upload:**
 1. fcv-ai-disclaimer (utility)
 2. fcv-skills-overview (utility)
-3. fcv-project-screener (core)
-4. fcv-cpf-peer-reviewer (core)
-5. fcv-isr-portfolio-screener (core)
-6. fcv-risk-briefing-generator (core)
-7. fcv-lessons-learned-extractor (productivity)
-8. fcv-rra-section-drafter (core)
-9. fcv-lens-note-drafter (core)
-10. fcv-trusted-source-analyst (productivity)
-11. fcv-rra-mini-update (core)
+3. fcv-prompt-refiner (utility) — **NEW**
+4. fcv-project-screener (core)
+5. fcv-cpf-peer-reviewer (core)
+6. fcv-isr-portfolio-screener (core)
+7. fcv-risk-briefing-generator (core)
+8. fcv-country-risk-scan (core) — **NEW**
+9. fcv-lessons-learned-extractor (productivity)
+10. fcv-rra-section-drafter (core)
+11. fcv-lens-note-drafter (core)
+12. fcv-trusted-source-analyst (productivity)
+13. fcv-rra-mini-update (core)
+14. fcv-country-portfolio-scanner (productivity) — **NEW**
+15. fcv-portfolio-risk-impact-assessment (productivity) — **NEW**
 
-After uploading all 11, confirm the full list back to me so I can verify nothing was missed.
+After uploading all 15, confirm the full list back to me so I can verify nothing was missed.
 
 ---
 
@@ -1461,3 +1465,53 @@ After the AI Disclaimer, append an italicised footer listing the primary skill a
 *Skills used: fcv-rra-mini-update | Also referenced: [list any other fcv- skills mentioned in the output, e.g., fcv-rra-section-drafter]*
 
 If no other FCV skills were referenced, use: *Skills used: fcv-rra-mini-update*
+
+---
+
+**Name:** fcv-country-risk-scan
+
+**Description:** Generate a structured FCV risk scan and briefing for World Bank development leadership on a country's fragility, conflict, violence, and institutional dynamics. Use this skill whenever a user requests an FCV country briefing, conflict risk assessment, CrisisWatch-style overview, or security and stability analysis for decision-making. Triggers on phrases like "FCV briefing", "country risk assessment", "fragility analysis", "conflict briefing for [country]", "write a country risk brief", or requests for an analyst-style security overview for senior leadership.
+
+**Content:**
+
+# FCV Country Risk Scan
+
+Generates a structured Fragility, Conflict & Violence (FCV) briefing suitable for senior World Bank / development leadership. The output follows a strict 500-word analytical format with inline citations.
+
+See fcv_country_risk_scan.md file for full content.
+
+---
+
+**Name:** fcv-country-portfolio-scanner
+
+**Description:** Scan and summarize a World Bank country portfolio by sector, status, and FCV relevance. Use this skill whenever a user needs a structured overview of active projects in a country, project pipeline snapshot, sector-based portfolio analysis, or an FCV-contextualized project inventory. Triggers on phrases like "country portfolio", "project overview", "portfolio scan", "what projects are in [country]?", "active projects by sector", or requests for a country project summary or portfolio health check.
+
+**Content:**
+
+# FCV Country Portfolio Scanner
+
+See fcv_country_portfolio_scanner.md file for full content.
+
+---
+
+**Name:** fcv-portfolio-risk-impact-assessment
+
+**Description:** Cross-analyze a country's FCV risk landscape with its active World Bank portfolio to assess project vulnerability and operational implications. Use this skill whenever a user needs to understand how identified fragility, conflict, or violence risks could affect project implementation, disbursement, or outcomes. Triggers on phrases like "portfolio risk impact", "how will risks affect projects", "risk impact assessment", "portfolio vulnerability analysis", "risk-adjusted portfolio brief", or requests for a synthesis of country risks and project realities.
+
+**Content:**
+
+# FCV Portfolio Risk Impact Assessment
+
+See fcv_portfolio_risk_impact.md file for full content.
+
+---
+
+**Name:** fcv-prompt-refiner
+
+**Description:** Clarify and refine an initial user prompt or request to ensure full understanding before execution. Use this skill whenever a user provides a vague, partial, or preliminary request and needs help making it more specific, complete, or actionable. Triggers on phrases like "refine this prompt", "help me clarify what I want", "improve my request", "make this more specific", or when a user seems uncertain about what they're asking for and wants structured guidance on framing their request.
+
+**Content:**
+
+# FCV Prompt Refiner
+
+See fcv_prompt_refiner.md file for full content.

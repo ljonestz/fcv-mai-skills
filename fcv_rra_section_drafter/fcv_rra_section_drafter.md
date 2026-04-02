@@ -31,7 +31,7 @@ Ask the user for:
   8. Economic Vulnerabilities
   9. Regional Dynamics
   10. Other (describe)
-- **Inputs** — ask: "Do you have any materials to start from? This could be a prior RRA draft, a NotebookLM summary, literature notes, or raw source material. The more you give me, the better the draft — but I can also start from scratch."
+- **Inputs** — ask: "Do you have any materials to start from? This could be a prior RRA draft, outline, a NotebookLM summary, literature notes, or raw source material. The more you give me, the better the draft — but I can also start from scratch."
 
 If the user provides materials, read them carefully before proceeding.
 

@@ -252,15 +252,14 @@
 <body>
 
 <h1>FCV mAI Skills — Toolkit Map</h1>
-<p class="subtitle">World Bank FCV Group · mAI Platform (ai.worldbank.org/mai) · April 2026</p>
+<p class="subtitle">World Bank FCV Group · mAI Platform (ai.worldbank.org/mai) · April 2026 (Updated)</p>
 
 <!-- ══════════════ CHANGE NOTE ══════════════ -->
 <div class="notes-box">
-  <strong>Recent changes (April 2026, pre-rollout refinements):</strong>
-  <strong>Project Screener</strong> restructured — Stage 2 now produces dynamic analytical themes (not a fixed 12-row OST table), Do No Harm synthesis paragraph, and structured action cards in Stage 3; strict S/R/S+R definitions and word caps added.
-  <strong>RRA Mini Update</strong> — new Step 3.5 research check-in (confirms themes, audience, and format before drafting); Step 2 baseline pause strengthened.
-  All skills updated: AI disclaimer now appears on final outputs only (not mid-step pauses); Skills Used footer added to every analytical output.
-  <em>Previous changes (March 2026): ISR Flag Reviewer retired → replaced by ISR Portfolio Scanner. Risk Briefing Generator moved from Core to Productivity.</em>
+  <strong>Recent changes (April 2026):</strong>
+  <strong>New skills added:</strong> Country Risk Scan, Country Portfolio Scanner, Portfolio Risk Impact Assessment (interlinked trio for country-level FCV and portfolio analysis), and Prompt Refiner (meta-skill for clarifying user requests).
+  <strong>Tier structure updated:</strong> Tier 1 now 7 skills (added Country Risk Scan), Tier 2 now 5 skills (added Country Portfolio Scanner and Portfolio Risk Impact Assessment), Utility tier expanded to 3 skills (added Prompt Refiner). Total package now 15 skills.
+  <em>Previous changes (early April): Project Screener restructured, RRA Mini Update check-in added, AI disclaimer moved to final outputs only. ISR Flag Reviewer retired → replaced by ISR Portfolio Scanner (late March).</em>
 </div>
 
 <!-- ══════════════ TIER GRID ══════════════ -->
@@ -302,6 +301,14 @@
         <div class="skill-desc">Maps recent FCV developments to CPF objectives. Analyses realized and potential portfolio risks per objective. Upload CPF or provide country name.</div>
         <span class="tag tag-portfolio">Portfolio</span>
         <span class="tag tag-analyse">Analyse</span>
+      </div>
+
+      <div class="skill">
+        <div class="skill-id">fcv-country-risk-scan</div>
+        <div class="skill-name">Country Risk Scan</div>
+        <div class="skill-desc">Generate a structured 500-word FCV briefing for a country covering risk overview, institutional fragility, conflict and violence dynamics, displacement, and government-development actor relations. Takes country, timeframe, and optional sector as inputs.</div>
+        <span class="tag tag-analyse">Analyse</span>
+        <span class="tag tag-draft">Draft</span>
       </div>
 
       <div class="skill">
@@ -355,6 +362,22 @@
         <span class="tag tag-review">Review</span>
       </div>
 
+      <div class="skill">
+        <div class="skill-id">fcv-country-portfolio-scanner</div>
+        <div class="skill-name">Country Portfolio Scanner</div>
+        <div class="skill-desc">Scans a country's active World Bank portfolio by sector with project names linked to documents (PAD/ISR), funding, status, and FCV relevance flags. Outputs as sector summary table plus narrative or narrative by sector.</div>
+        <span class="tag tag-portfolio">Portfolio</span>
+        <span class="tag tag-analyse">Analyse</span>
+      </div>
+
+      <div class="skill">
+        <div class="skill-id">fcv-portfolio-risk-impact-assessment</div>
+        <div class="skill-name">Portfolio Risk Impact Assessment</div>
+        <div class="skill-desc">Synthesizes country FCV risks with portfolio to assess how specific risks threaten specific projects. Activates Country Risk Scan + Country Portfolio Scanner if needed, then produces vulnerability matrix and adaptive management brief. Vulnerability types: field access, counterpart capacity, demand shock, supply chain, fiduciary risk, staff safety.</div>
+        <span class="tag tag-portfolio">Portfolio</span>
+        <span class="tag tag-analyse">Analyse</span>
+      </div>
+
     </div>
   </div>
 
@@ -380,6 +403,13 @@
         <span class="tag tag-nav">Compliance</span>
       </div>
 
+      <div class="skill">
+        <div class="skill-id">fcv-prompt-refiner</div>
+        <div class="skill-name">Prompt Refiner</div>
+        <div class="skill-desc">Meta-skill: Clarifies and refines a user prompt through up to 6 targeted follow-up questions, then generates a polished, reusable refined prompt. Use before executing complex analytical requests or when initial request is vague.</div>
+        <span class="tag tag-nav">Navigation</span>
+      </div>
+
     </div>
   </div>
 
@@ -401,8 +431,24 @@
     <div class="link-row">
       <div class="arrow">→</div>
       <div class="link-text">
+        <strong>Prompt Refiner</strong> → any analytical skill<br>
+        Optional: clarify and refine a complex or vague request before activating a main skill
+      </div>
+    </div>
+
+    <div class="link-row">
+      <div class="arrow">→</div>
+      <div class="link-text">
         <strong>ISR Portfolio Scanner</strong> → <strong>Risk Briefing Generator</strong><br>
         Portfolio scan surfaces FCV patterns that feed directly into a CPF-linked risk briefing
+      </div>
+    </div>
+
+    <div class="link-row">
+      <div class="arrow">→</div>
+      <div class="link-text">
+        <strong>Country Risk Scan</strong> ↔ <strong>Country Portfolio Scanner</strong> → <strong>Portfolio Risk Impact Assessment</strong><br>
+        Risk scan and portfolio scan outputs combine in Portfolio Risk Impact Assessment to identify which projects are vulnerable to which risks
       </div>
     </div>
 
