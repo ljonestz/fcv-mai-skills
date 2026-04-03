@@ -1,6 +1,6 @@
 # FCV mAI Skills Package
 
-A set of 15 AI-assisted workflow skills for the **FCV (Fragility, Conflict & Violence) Group**, built for the [mAI platform](https://ai.worldbank.org/mai). Skills support FCV Country Coordinators and specialist staff in recurring analytical, review, and advisory tasks.
+A set of 16 AI-assisted workflow skills for the **FCV (Fragility, Conflict & Violence) Group**, built for the [mAI platform](https://ai.worldbank.org/mai). Skills support FCV Country Coordinators and specialist staff in recurring analytical, review, and advisory tasks.
 
 ---
 
@@ -20,15 +20,14 @@ A set of 15 AI-assisted workflow skills for the **FCV (Fragility, Conflict & Vio
 | 10 | `fcv-country-risk-scan` | Generate structured FCV country risk briefings |
 | 11 | `fcv-country-portfolio-scanner` | Scan active projects and group by sector with FCV flags |
 | 12 | `fcv-portfolio-risk-impact-assessment` | Cross-analyze country risks with portfolio to assess project vulnerability |
-| 13 | `fcv-prompt-refiner` | Clarify and refine user requests before execution |, Country Risk Scan
-
-**Tier 2 (specialist):** ISR Portfolio Screener, Lessons Learned Extractor, Trusted Source Analyst, Country Portfolio Scanner, Portfolio Risk Impact Assessment
+| 13 | `fcv-prompt-refiner` | Clarify and refine user requests before execution |
+| 14 | `fcv-citation-checker` | Verify citations, catch hallucinated sources, and flag unsourced claims in written documents |
 
 **Utility:** Skills Overview, AI Disclaimer, Prompt Refiner
 
 **Tier 1 (core, high-frequency):** Project Screener, RRA Section Drafter, CPF Peer Reviewer, Risk Briefing Generator, FCV Lens Note Drafter, RRA Mini Update
 
-**Tier 2 (specialist):** ISR Portfolio Screener, Lessons Learned Extractor, Trusted Source Analyst
+**Tier 2 (specialist):** ISR Portfolio Screener, Lessons Learned Extractor, Trusted Source Analyst, Country Portfolio Scanner, Portfolio Risk Impact Assessment, Citation Checker
 
 ---
 
@@ -36,7 +35,7 @@ A set of 15 AI-assisted workflow skills for the **FCV (Fragility, Conflict & Vio
 
 ```
 fcv_<skill_name>/          — One folder per skill, contains the skill .md file
-fcv_skills_combined/       — Combined upload-ready package (all 11 skills in one file)
+fcv_skills_combined/       — Combined upload-ready package (all skills in one file)
 fcv-skills-map.html        — Interactive navigation reference for the skills package
 CLAUDE.md                  — Project-level instructions for Claude Code sessions
 ```
@@ -85,6 +84,7 @@ Every skill file follows this structure:
 | 2026-03-31 | Initial build: 11 skills written and quality-checked |
 | 2026-03-31 | mAI reviewer amendments applied to 8 skills |
 | 2026-04-01 | Four new skills added: Country Risk Scan, Country Portfolio Scanner, Portfolio Risk Impact Assessment, Prompt Refiner. Updated tier structure (Tier 1: 7 skills; Tier 2: 5 skills; Utility: 3 skills). Total package now 15 skills. |
+| 2026-04-02 | Added Citation Checker as a Tier 2 specialist skill for citation verification, hallucination detection, and unsourced-claim flagging. Total package now 16 skills. |
 | 2026-04-01 | Pre-rollout refinements: Project Screener restructured; RRA Mini Update check-in added; tier reclassification (Tier 1: 6 skills; Tier 2: 3 skills) |
 | 2026-04-01 | Repo created; skill files version-controlled on GitHub |
 

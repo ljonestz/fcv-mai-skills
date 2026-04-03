@@ -6,7 +6,7 @@ Project-level instructions for the FCV mAI Skills package. These supplement (and
 
 ## Project Overview
 
-This directory contains a package of **11 mAI skills** for the World Bank FCV Group, designed to support FCV Country Coordinators and specialist staff in recurring analytical, review, and advisory workflows.
+This directory contains a package of **16 mAI skills** for the World Bank FCV Group, designed to support FCV Country Coordinators and specialist staff in recurring analytical, review, and advisory workflows.
 
 **Platform:** ai.worldbank.org/mai (mAI) — skills are plain-text markdown files with Name, Description, and Content fields.
 **Users:** FCV Country Coordinators — domain experts, low-LLM-skill users. Skills must be self-explanatory with guided entry.
@@ -53,6 +53,7 @@ fcv_skills_combined/       — fcv_all_skills_upload_package.md (combined upload
 fcv_skills_overview/       — Navigation hub skill
 fcv_isr_portfolio_scanner/ — FCV_Analytics_Page.md (ISR Portfolio Scanner)
 fcv_ai_disclaimer/         — Standalone disclaimer skill
+fcv_citation_checker/      — Citation Checker skill
 docs/specs/                — Design spec and implementation plan
 Reference Documents/       — RRA methodology, OST Manual, FCV Playbook, etc.
 mAI Skills/                — Platform documentation
@@ -60,7 +61,7 @@ mAI Skills/                — Platform documentation
 
 ---
 
-## The 11 Skills
+## The 16 Skills
 
 | # | Skill ID | File location |
 |---|---|---|
@@ -75,6 +76,11 @@ mAI Skills/                — Platform documentation
 | 9 | fcv-rra-mini-update | `fcv_rra_mini_update/fcv_rra_mini_update.md` |
 | 10 | fcv-skills-overview | `fcv_skills_overview/fcv_skills_overview.md` |
 | 11 | fcv-ai-disclaimer | `fcv_ai_disclaimer/` |
+| 12 | fcv-country-risk-scan | `fcv_country_risk_scan/fcv_country_risk_scan.md` |
+| 13 | fcv-country-portfolio-scanner | `fcv_country_portfolio_scanner/fcv_country_portfolio_scanner.md` |
+| 14 | fcv-portfolio-risk-impact-assessment | `fcv_portfolio_risk_impact/fcv_portfolio_risk_impact.md` |
+| 15 | fcv-prompt-refiner | `fcv_prompt_refiner/fcv_prompt_refiner.md` |
+| 16 | fcv-citation-checker | `fcv_citation_checker/fcv_citation_checker.md` |
 
 **Retired:** `fcv-isr-flag-reviewer` — replaced by `fcv-isr-portfolio-screener` (2026-03-31).
 
@@ -101,7 +107,7 @@ Every analytical skill must include:
 
 ## Combined Upload Package
 
-`fcv_skills_combined/fcv_all_skills_upload_package.md` is the single file used to upload/refresh all 11 skills on the mAI platform. **It must be kept in sync with individual skill files.** Whenever a skill is edited, update both the individual file and the combined package.
+`fcv_skills_combined/fcv_all_skills_upload_package.md` is the single file used to upload/refresh all 16 skills on the mAI platform. **It must be kept in sync with individual skill files.** Whenever a skill is edited, update both the individual file and the combined package.
 
 ---
 
@@ -122,6 +128,8 @@ Every analytical skill must include:
 | 2026-03-31 | Initial build: 11 skills written and quality-checked |
 | 2026-03-31 | mAI reviewer amendments: 8 skills updated (Quick Flag mode, fallback RRA table, Mixed label, FCV lens instruction, thematic briefing option, extended source list, optional upload, coordinator scenario language in overview). ISR Flag Reviewer replaced by ISR Portfolio Scanner. |
 | 2026-04-01 | Pre-rollout refinements: Project Screener restructured (strict S/R/S+R definitions, dynamic analytical themes replacing fixed OST table, structured action cards for Stage 3, word caps 800-1000w/1200-1500w, 6-point rating scale); RRA Mini Update check-in step added (Step 3.5) and Step 2 pause strengthened; AI disclaimer scoped to final outputs only across all skills; Skills Used footer added to all 9 analytical skills; RRA Mini Update, Risk Briefing Generator, and FCV Lens Note Drafter moved from Tier 2 to Tier 1 (Tier 1 now 6 skills; Tier 2 now 3: ISR Portfolio Scanner, Lessons Learned Extractor, Trusted Source Analyst). |
+| 2026-04-01 | Four new skills added: Country Risk Scan, Country Portfolio Scanner, Portfolio Risk Impact Assessment, and Prompt Refiner. Package expanded from 11 to 15 skills. |
+| 2026-04-02 | Citation Checker added as a specialist skill for citation verification, hallucination detection, and unsourced-claim flagging. Package expanded to 16 skills. |
 
 **Future skills flagged (not yet built):** Country Engagement Brief, Do No Harm Standalone, PRA Eligibility Advisory.
 

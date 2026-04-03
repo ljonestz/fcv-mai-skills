@@ -257,8 +257,8 @@
 <!-- ══════════════ CHANGE NOTE ══════════════ -->
 <div class="notes-box">
   <strong>Recent changes (April 2026):</strong>
-  <strong>New skills added:</strong> Country Risk Scan, Country Portfolio Scanner, Portfolio Risk Impact Assessment (interlinked trio for country-level FCV and portfolio analysis), and Prompt Refiner (meta-skill for clarifying user requests).
-  <strong>Tier structure updated:</strong> Tier 1 now 7 skills (added Country Risk Scan), Tier 2 now 5 skills (added Country Portfolio Scanner and Portfolio Risk Impact Assessment), Utility tier expanded to 3 skills (added Prompt Refiner). Total package now 15 skills.
+  <strong>New skills added:</strong> Country Risk Scan, Country Portfolio Scanner, Portfolio Risk Impact Assessment (interlinked trio for country-level FCV and portfolio analysis), Prompt Refiner (meta-skill for clarifying user requests), and Citation Checker (document sourcing audit and hallucination check).
+  <strong>Tier structure updated:</strong> Tier 1 remains 7 skills, Tier 2 now 6 skills (added Citation Checker), and Utility remains 3 skills. Total package now 16 skills.
   <em>Previous changes (early April): Project Screener restructured, RRA Mini Update check-in added, AI disclaimer moved to final outputs only. ISR Flag Reviewer retired → replaced by ISR Portfolio Scanner (late March).</em>
 </div>
 
@@ -378,6 +378,14 @@
         <span class="tag tag-analyse">Analyse</span>
       </div>
 
+      <div class="skill new-skill">
+        <div class="skill-id">fcv-citation-checker</div>
+        <div class="skill-name">Citation Checker <span class="new-badge">NEW</span></div>
+        <div class="skill-desc">Audits a document's citations and factual claims. Verifies live links, flags dead or hallucinated sources, identifies misrepresented citations, and marks unsourced factual assertions inline in the user's original text.</div>
+        <span class="tag tag-evidence">Evidence</span>
+        <span class="tag tag-review">Review</span>
+      </div>
+
     </div>
   </div>
 
@@ -465,6 +473,14 @@
       <div class="link-text">
         <strong>Trusted Source Analyst</strong> → any analytical skill<br>
         Evidence retrieval (Verify / Enhance / Compare) can feed CPF Reviewer, Project Screener, Lens Note, or RRA Drafter
+      </div>
+    </div>
+
+    <div class="link-row">
+      <div class="arrow">→</div>
+      <div class="link-text">
+        <strong>Citation Checker</strong> → any drafted note or briefing<br>
+        Final-pass audit for citation integrity, hallucinated links, and unsourced factual claims before sharing a document
       </div>
     </div>
 

@@ -27,6 +27,7 @@ Display this table:
 | 11 | Country Portfolio Scanner | You want a sector-organized overview of a country's active World Bank projects with FCV flags, funding, and document links |
 | 12 | Portfolio Risk Impact Assessment | You need to understand how identified country risks threaten specific projects in the portfolio — combines risk scan + portfolio scanner |
 | 13 | Prompt Refiner | Your request is vague or preliminary and you want structured help clarifying and refining it before executing a skill |
+| 14 | Citation Checker | You need to verify citations, catch hallucinated sources, or flag unsourced factual claims in a draft briefing, note, or report |
 
 ### Step 2 — Prompt the User
 
