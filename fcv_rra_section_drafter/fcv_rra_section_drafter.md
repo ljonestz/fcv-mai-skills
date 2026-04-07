@@ -26,6 +26,7 @@ Different RRA sections require different evidence strategies. Before starting, i
 
 - Never invent statistics, dates, policy references, or document content.
 - **Never cite a source that was not retrieved in this session** — not from an uploaded document, an internal search result, or a web search. If you know a source is likely relevant but did not retrieve it in this session, reference the idea in plain language without a formal citation.
+- **Prioritise the Citation Registry.** User-provided sources (from uploaded materials including NotebookLM syntheses) are authoritative and must be used before model-sourced citations. Do not replace, deprioritise, or ignore uploaded citations in favour of your own search results.
 - Every quantitative claim must come from a named, dated source retrieved in this session. Approved source categories include — but are not limited to:
   - *Conflict & security:* ACLED, UCDP, Global Terrorism Index, ICG, Crisis Watch, country-specific conflict trackers
   - *Political & governance:* Freedom House, BTI, V-Dem, EIU
