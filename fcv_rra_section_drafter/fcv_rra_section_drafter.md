@@ -165,7 +165,23 @@ For each candidate source found, record:
 
 **Hallucination risk note:** Internal WBG document searches tend to return reliable results with verifiable links. External web searches carry significantly higher hallucination risk — fabricated titles, wrong authors, non-existent reports. This is why the confirmation pause in Step 2c-ii exists.
 
-**2d. Build citation pool**
+**2c-ii. Citation Confirmation Pause**
+
+Before proceeding to draft, present both lists to the user in a single message:
+
+> **Citation Registry** (from your uploaded materials): [numbered list — X sources]
+>
+> **Candidate Sources** (from my searches): [numbered list — Y sources, each with title, author/org, year, one-line summary, and Internal/External tag]
+>
+> "I'll use all Registry sources in the draft. For the Candidate Sources — do any of these look wrong or unfamiliar? I'll include them unless you flag any to remove."
+
+This is an **opt-out** model: all candidates are included unless the user objects. The user glances at the list and flags anything obviously wrong — they do not need to verify each source in detail.
+
+**If the Citation Registry is empty** (no uploaded materials), the entire candidate list is presented and the skill notes: *"Since I'm working without uploaded materials, all citations will come from my searches. Please review this list carefully before I draft."*
+
+**Do not proceed to Step 2d until the user has responded.** A simple "looks good" or "go ahead" is sufficient — the user does not need to review each source individually.
+
+**2d. Build final citation pool**
 
 Consolidate all sources from Steps 2b and 2c. For each source, record: author/organisation, full title (if retrievable), year, and publisher or URL. Assign a confidence tier:
 
