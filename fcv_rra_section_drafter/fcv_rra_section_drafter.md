@@ -122,11 +122,23 @@ Use the following section conventions alongside the new structure:
 | Portfolio Analysis | Portfolio fragility exposure; FCV-sensitive/responsive projects; lessons from completed operations |
 | Recommendations | Trajectory-shifting options; FCV-sensitive and FCV-responsive recommendations |
 
-**2b. Mine uploaded documents for citations first**
+**2b. Build the Citation Registry from uploaded materials**
 
-Before running any searches, read all uploaded materials — including NotebookLM syntheses, draft text, literature notes, and outlines — and extract every source they cite. This is the most important source of Confirmed citations.
+Before running any searches, read all uploaded materials — including NotebookLM syntheses, draft text, literature notes, and outlines — and extract **every** source they cite. This is not a selection or a sample — extract the complete list.
 
-A NotebookLM synthesis typically represents hours of literature review. Every source cited within it is explicitly provided by the user and is available to this skill. Extract author/organisation, title, year, and any other details visible in the document. Do not ignore or deprioritise these sources — they are the foundation of the citation pool.
+A NotebookLM synthesis typically represents hours of literature review. Every source cited within it is explicitly provided by the user. Extract: author/organisation, title, year, and any other details visible in the document.
+
+Present the Citation Registry as a numbered table:
+
+| # | Author / Organisation | Title | Year | Tag |
+|---|---|---|---|---|
+| 1 | ACLED | "Conflict Trends in the Sahel" | 2025 | [User-Provided] |
+| 2 | World Bank | "Somalia SCD" | 2023 | [User-Provided] |
+| ... | ... | ... | ... | ... |
+
+State the count explicitly: *"I extracted [X] sources from your uploaded materials."*
+
+**User-Provided citations are authoritative.** They require no verification — not by this skill, not by any downstream skill. They are accepted as given and must be prioritised in the draft over any model-sourced citations. Do not ignore, deprioritise, or replace these sources with your own.
 
 **2c. Search for additional evidence**
 
