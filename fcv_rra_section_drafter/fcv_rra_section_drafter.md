@@ -195,7 +195,7 @@ These tags will appear in the final references table (Step 7) and are used by th
 
 **2e. Extract evidence anchors**
 
-Before drafting, extract 5–8 key insights relevant to the section, each tied to a citation pool entry. Structure them as: *Insight — [Source, Date, Tier]*. These evidence anchors are the drafting foundation — the draft will build from these, not from general knowledge.
+Before drafting, extract 5–8 key insights relevant to the section, each tied to a citation pool entry. Structure them as: *Insight — [Source, Date, Tag]*. These evidence anchors are the drafting foundation — the draft will build from these, not from general knowledge.
 
 ---
 
@@ -206,8 +206,8 @@ Working from the user's uploaded inputs (if any) plus the citation pool and evid
 - **Structure** the content according to RRA methodology conventions for the selected section and mode.
 - **Analytical framing:** Distinguish between structural/root causes, proximate triggers, and emerging risks. Balance risk factors with sources of resilience.
 - **Tone:** Analytical narrative prose (not bullet points). RRAs are substantive analytical documents — the language should be precise, evidence-based, and nuanced.
-- **Citations:** Draft only from the citation pool built in Step 2. Use Chicago author-date format inline — e.g., (World Bank 2023), (ACLED 2026). Do not use letter codes. Do not introduce new sources during drafting. If a relevant claim cannot be grounded in a pool entry, state it as analytical judgement without a formal citation, or flag it for the user to verify.
-- **Probable citations:** Flag all Probable-tier citations inline: `(Source Year — unverified, please confirm before circulation)`.
+- **Citations:** Draft only from the final citation pool built in Step 2d. Use Chicago author-date format inline — e.g., (World Bank 2023), (ACLED 2026). Do not use letter codes. Do not introduce new sources during drafting. If a relevant claim cannot be grounded in a pool entry, state it as analytical judgement without a formal citation, or flag it for the user to verify.
+- **Prioritise User-Provided citations.** Every `[User-Provided]` source in the Citation Registry should be used at least once in the draft if it is relevant to the section topic. `[Model-Sourced]` citations supplement — they do not replace — User-Provided sources.
 - **Flags:** Where evidence is thin, say so. Where the user's uploaded inputs contain claims that could not be corroborated, flag them: "This claim could not be verified against available sources — please confirm from your own knowledge."
 - **Length:** Target the word range confirmed with the user in Step 1. For sections exceeding ~1,500 words, recommend splitting into named subsections.
 
