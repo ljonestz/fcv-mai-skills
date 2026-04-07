@@ -183,19 +183,15 @@ This is an **opt-out** model: all candidates are included unless the user object
 
 **2d. Build final citation pool**
 
-Consolidate all sources from Steps 2b and 2c. For each source, record: author/organisation, full title (if retrievable), year, and publisher or URL. Assign a confidence tier:
+Merge the Citation Registry with the approved Candidate Sources. The final pool carries forward the tags from earlier steps:
 
-- **Confirmed** — full bibliographic details are available from any of: (a) a source cited in an uploaded document (including a NotebookLM synthesis), (b) a web search result in this session, or (c) a WBG internal search result. External academic literature is Confirmed when retrieved. Sources cited within a user-uploaded document are Confirmed — the user has provided them explicitly.
-- **Probable** — author/organisation and year traceable in this session, but full title not confirmed. Must be flagged inline: `(Source Year — unverified, please confirm before circulation)`.
-- **Do Not Use** — cannot be traced to any retrieved source in this session. Reference the underlying idea in plain language only; no formal citation.
+- `[User-Provided]` — from uploaded materials. Authoritative. No verification needed.
+- `[Model-Sourced: Internal]` — from WBG internal document search. Lower hallucination risk.
+- `[Model-Sourced: External]` — from web search. Higher hallucination risk — these are the primary targets for downstream verification.
 
-Only Confirmed and Probable entries may appear as formal citations in the draft. Use Chicago author-date format throughout: `(Organisation Year)` or `(Author Year)` inline. Do not use letter codes.
+Use Chicago author-date format throughout: `(Organisation Year)` or `(Author Year)` inline. Do not use letter codes.
 
-Report the pool to the user before drafting:
-
-> "I found [X] Confirmed and [Y] Probable sources. Here is what I'll draw on:
-> [List: author/organisation, title if confirmed, year, tier]
-> Would you like to upload additional materials before I draft?"
+These tags will appear in the final references table (Step 7) and are used by the Citation Verifier skill if the user runs it after this skill.
 
 **2e. Extract evidence anchors**
 
