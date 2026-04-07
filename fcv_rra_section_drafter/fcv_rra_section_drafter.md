@@ -217,14 +217,15 @@ Working from the user's uploaded inputs (if any) plus the citation pool and evid
 
 Before presenting the draft to the user, run a quick internal QA check:
 
-- Scan every in-text citation against the citation pool from Step 2.
-- Count Confirmed vs Probable citations.
-- Remove or flag any citation not present in the pool (Do Not Use violations).
+- Scan every in-text citation against the final citation pool from Step 2d.
+- Count User-Provided vs Model-Sourced citations.
+- Remove or flag any citation not present in the pool.
 - Check that no new sources were introduced during drafting.
+- Verify that all User-Provided sources were used at least once (if relevant to the section).
 
 Prepend a brief QA note to the draft:
 
-> **Citation QA:** Draft uses [X] Confirmed and [Y] Probable citations. [Z] passages reference claims without formal citations — these are marked [analytical judgement] for your review.
+> **Citation QA:** Draft uses [X] User-Provided and [Y] Model-Sourced citations. [Z] passages reference claims without formal citations — these are marked [analytical judgement] for your review.
 
 ---
 
@@ -252,13 +253,34 @@ When the user is satisfied:
 
 - Append a **References** section at the end of the draft body (before the AI Disclaimer). List every source cited in the draft in full Chicago style, grouped by tier:
 
-  **Confirmed Sources**
+  **User-Provided Sources**
   Author/Organisation. *Title*. Year. Publisher/URL.
 
-  **Probable Sources** *(unverified — please confirm before circulation)*
-  Author/Organisation. *Title if known*. Year.
+  **Model-Sourced: Internal** *(from WBG document search)*
+  Author/Organisation. *Title*. Year. Publisher/URL.
+
+  **Model-Sourced: External** *(from web search — verify before circulation)*
+  Author/Organisation. *Title*. Year. Publisher/URL.
 
   This reference list allows the user to check every citation and identify any hallucinations before circulation.
+
+- Present a **Next Step** block to guide the user to citation verification:
+
+  > ---
+  > **Next Step — Verify Your Citations**
+  >
+  > This draft contains [X] citations sourced from my searches (marked `[Model-Sourced]` in the references table above). To check these are accurate, open a new mAI conversation and type:
+  >
+  > *"Check the citations in this RRA draft"*
+  >
+  > Then paste the full draft into the conversation. mAI will check each Model-Sourced citation and correct any that can't be confirmed.
+  >
+  > This step is recommended before sharing or circulating the draft.
+  > ---
+
+  If all citations are `[User-Provided]` (no model-sourced ones), the block instead reads:
+
+  > *"All citations in this draft came from your uploaded materials. Citation verification is optional but available — open a new mAI conversation and say 'Check the citations in this RRA draft' if you'd like a second check."*
 
 - Offer: "Would you like me to export this section as a document?"
 - Flag remaining evidence gaps: "The following areas may benefit from additional evidence or your firsthand knowledge: [list]."
