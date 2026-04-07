@@ -140,9 +140,9 @@ State the count explicitly: *"I extracted [X] sources from your uploaded materia
 
 **User-Provided citations are authoritative.** They require no verification — not by this skill, not by any downstream skill. They are accepted as given and must be prioritised in the draft over any model-sourced citations. Do not ignore, deprioritise, or replace these sources with your own.
 
-**2c. Search for additional evidence**
+**2c. Search for additional evidence — build Candidate Sources list**
 
-After mining uploaded materials, search for further evidence relevant to the selected section:
+After building the Citation Registry, search for further evidence relevant to the selected section. Collect results into a **Candidate Sources** list — separate from the Citation Registry:
 
 - **External sources via web search** — draw from the trusted source ecosystem calibrated to the section topic:
   - Conflict & security: ACLED, UCDP, ICG, Crisis Watch, country-specific trackers
@@ -154,7 +154,16 @@ After mining uploaded materials, search for further evidence relevant to the sel
 
 - **WBG internal sources via document search:** SCDs, CPFs, country briefs, ISRs/ICRs
 
-Both are equally valid. For Mode 1 (Literature Synthesis) sections, external academic and institutional sources will typically form the majority of the citation pool. Do not default to WBG internal documents only.
+For each candidate source found, record:
+- Author / Organisation
+- Title
+- Year
+- One-line summary of what the source says
+- Tag: `[Model-Sourced: Internal]` for WBG document search results, or `[Model-Sourced: External]` for web search results
+
+**These are candidates, not yet part of the citation pool.** Do not use them in drafting until Step 2c-ii is complete.
+
+**Hallucination risk note:** Internal WBG document searches tend to return reliable results with verifiable links. External web searches carry significantly higher hallucination risk — fabricated titles, wrong authors, non-existent reports. This is why the confirmation pause in Step 2c-ii exists.
 
 **2d. Build citation pool**
 
