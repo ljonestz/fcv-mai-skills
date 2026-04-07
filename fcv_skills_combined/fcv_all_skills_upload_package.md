@@ -1,8 +1,8 @@
 # FCV Skills Package — Ready for mAI Upload
 
-**Instructions for mAI:** This document contains 16 FCV skills for the World Bank FCV Group. Please create or update each skill on the mAI platform using the **Name**, **Description**, and **Content** fields provided below. Each skill is separated by a horizontal rule. For skills that already exist, replace the existing content entirely with the version below. For new skills, create them fresh.
+**Instructions for mAI:** This document contains 17 FCV skills for the World Bank FCV Group. Please create or update each skill on the mAI platform using the **Name**, **Description**, and **Content** fields provided below. Each skill is separated by a horizontal rule. For skills that already exist, replace the existing content entirely with the version below. For new skills, create them fresh.
 
-**The 16 skills to upload:**
+**The 17 skills to upload:**
 1. fcv-ai-disclaimer (utility)
 2. fcv-skills-overview (utility)
 3. fcv-prompt-refiner (utility) — **NEW**
@@ -19,8 +19,9 @@
 14. fcv-country-portfolio-scanner (productivity) — **NEW**
 15. fcv-portfolio-risk-impact-assessment (productivity) — **NEW**
 16. fcv-citation-checker (productivity) — **NEW**
+17. fcv-citation-verifier (productivity) — **NEW**
 
-After uploading all 16, confirm the full list back to me so I can verify nothing was missed.
+After uploading all 17, confirm the full list back to me so I can verify nothing was missed.
 
 ---
 
@@ -998,6 +999,7 @@ Different RRA sections require different evidence strategies. Before starting, i
 
 - Never invent statistics, dates, policy references, or document content.
 - **Never cite a source that was not retrieved in this session** — not from an uploaded document, an internal search result, or a web search. If you know a source is likely relevant but did not retrieve it in this session, reference the idea in plain language without a formal citation.
+- **Prioritise the Citation Registry.** User-provided sources (from uploaded materials including NotebookLM syntheses) are authoritative and must be used before model-sourced citations. Do not replace, deprioritise, or ignore uploaded citations in favour of your own search results.
 - Every quantitative claim must come from a named, dated source retrieved in this session. Approved source categories include — but are not limited to:
   - *Conflict & security:* ACLED, UCDP, Global Terrorism Index, ICG, Crisis Watch, country-specific conflict trackers
   - *Political & governance:* Freedom House, BTI, V-Dem, EIU
@@ -1094,15 +1096,27 @@ Use the following section conventions alongside the new structure:
 | Portfolio Analysis | Portfolio fragility exposure; FCV-sensitive/responsive projects; lessons from completed operations |
 | Recommendations | Trajectory-shifting options; FCV-sensitive and FCV-responsive recommendations |
 
-**2b. Mine uploaded documents for citations first**
+**2b. Build the Citation Registry from uploaded materials**
 
-Before running any searches, read all uploaded materials — including NotebookLM syntheses, draft text, literature notes, and outlines — and extract every source they cite. This is the most important source of Confirmed citations.
+Before running any searches, read all uploaded materials — including NotebookLM syntheses, draft text, literature notes, and outlines — and extract **every** source they cite. This is not a selection or a sample — extract the complete list.
 
-A NotebookLM synthesis typically represents hours of literature review. Every source cited within it is explicitly provided by the user and is available to this skill. Extract author/organisation, title, year, and any other details visible in the document. Do not ignore or deprioritise these sources — they are the foundation of the citation pool.
+A NotebookLM synthesis typically represents hours of literature review. Every source cited within it is explicitly provided by the user. Extract: author/organisation, title, year, and any other details visible in the document.
 
-**2c. Search for additional evidence**
+Present the Citation Registry as a numbered table:
 
-After mining uploaded materials, search for further evidence relevant to the selected section:
+| # | Author / Organisation | Title | Year | Tag |
+|---|---|---|---|---|
+| 1 | ACLED | "Conflict Trends in the Sahel" | 2025 | [User-Provided] |
+| 2 | World Bank | "Somalia SCD" | 2023 | [User-Provided] |
+| ... | ... | ... | ... | ... |
+
+State the count explicitly: *"I extracted [X] sources from your uploaded materials."*
+
+**User-Provided citations are authoritative.** They require no verification — not by this skill, not by any downstream skill. They are accepted as given and must be prioritised in the draft over any model-sourced citations. Do not ignore, deprioritise, or replace these sources with your own.
+
+**2c. Search for additional evidence — build Candidate Sources list**
+
+After building the Citation Registry, search for further evidence relevant to the selected section. Collect results into a **Candidate Sources** list — separate from the Citation Registry:
 
 - **External sources via web search** — draw from the trusted source ecosystem calibrated to the section topic:
   - Conflict & security: ACLED, UCDP, ICG, Crisis Watch, country-specific trackers
@@ -1114,27 +1128,48 @@ After mining uploaded materials, search for further evidence relevant to the sel
 
 - **WBG internal sources via document search:** SCDs, CPFs, country briefs, ISRs/ICRs
 
-Both are equally valid. For Mode 1 (Literature Synthesis) sections, external academic and institutional sources will typically form the majority of the citation pool. Do not default to WBG internal documents only.
+For each candidate source found, record:
+- Author / Organisation
+- Title
+- Year
+- One-line summary of what the source says
+- Tag: `[Model-Sourced: Internal]` for WBG document search results, or `[Model-Sourced: External]` for web search results
 
-**2d. Build citation pool**
+**These are candidates, not yet part of the citation pool.** Do not use them in drafting until Step 2c-ii is complete.
 
-Consolidate all sources from Steps 2b and 2c. For each source, record: author/organisation, full title (if retrievable), year, and publisher or URL. Assign a confidence tier:
+**Hallucination risk note:** Internal WBG document searches tend to return reliable results with verifiable links. External web searches carry significantly higher hallucination risk — fabricated titles, wrong authors, non-existent reports. This is why the confirmation pause in Step 2c-ii exists.
 
-- **Confirmed** — full bibliographic details are available from any of: (a) a source cited in an uploaded document (including a NotebookLM synthesis), (b) a web search result in this session, or (c) a WBG internal search result. External academic literature is Confirmed when retrieved. Sources cited within a user-uploaded document are Confirmed — the user has provided them explicitly.
-- **Probable** — author/organisation and year traceable in this session, but full title not confirmed. Must be flagged inline: `(Source Year — unverified, please confirm before circulation)`.
-- **Do Not Use** — cannot be traced to any retrieved source in this session. Reference the underlying idea in plain language only; no formal citation.
+**2c-ii. Citation Confirmation Pause**
 
-Only Confirmed and Probable entries may appear as formal citations in the draft. Use Chicago author-date format throughout: `(Organisation Year)` or `(Author Year)` inline. Do not use letter codes.
+Before proceeding to draft, present both lists to the user in a single message:
 
-Report the pool to the user before drafting:
+> **Citation Registry** (from your uploaded materials): [numbered list — X sources]
+>
+> **Candidate Sources** (from my searches): [numbered list — Y sources, each with title, author/org, year, one-line summary, and Internal/External tag]
+>
+> "I'll use all Registry sources in the draft. For the Candidate Sources — do any of these look wrong or unfamiliar? I'll include them unless you flag any to remove."
 
-> "I found [X] Confirmed and [Y] Probable sources. Here is what I'll draw on:
-> [List: author/organisation, title if confirmed, year, tier]
-> Would you like to upload additional materials before I draft?"
+This is an **opt-out** model: all candidates are included unless the user objects. The user glances at the list and flags anything obviously wrong — they do not need to verify each source in detail.
+
+**If the Citation Registry is empty** (no uploaded materials), the entire candidate list is presented and the skill notes: *"Since I'm working without uploaded materials, all citations will come from my searches. Please review this list carefully before I draft."*
+
+**Do not proceed to Step 2d until the user has responded.** A simple "looks good" or "go ahead" is sufficient — the user does not need to review each source individually.
+
+**2d. Build final citation pool**
+
+Merge the Citation Registry with the approved Candidate Sources. The final pool carries forward the tags from earlier steps:
+
+- `[User-Provided]` — from uploaded materials. Authoritative. No verification needed.
+- `[Model-Sourced: Internal]` — from WBG internal document search. Lower hallucination risk.
+- `[Model-Sourced: External]` — from web search. Higher hallucination risk — these are the primary targets for downstream verification.
+
+Use Chicago author-date format throughout: `(Organisation Year)` or `(Author Year)` inline. Do not use letter codes.
+
+These tags will appear in the final references table (Step 7) and are used by the Citation Verifier skill if the user runs it after this skill.
 
 **2e. Extract evidence anchors**
 
-Before drafting, extract 5–8 key insights relevant to the section, each tied to a citation pool entry. Structure them as: *Insight — [Source, Date, Tier]*. These evidence anchors are the drafting foundation — the draft will build from these, not from general knowledge.
+Before drafting, extract 5–8 key insights relevant to the section, each tied to a citation pool entry. Structure them as: *Insight — [Source, Date, Tag]*. These evidence anchors are the drafting foundation — the draft will build from these, not from general knowledge.
 
 ---
 
@@ -1145,8 +1180,8 @@ Working from the user's uploaded inputs (if any) plus the citation pool and evid
 - **Structure** the content according to RRA methodology conventions for the selected section and mode.
 - **Analytical framing:** Distinguish between structural/root causes, proximate triggers, and emerging risks. Balance risk factors with sources of resilience.
 - **Tone:** Analytical narrative prose (not bullet points). RRAs are substantive analytical documents — the language should be precise, evidence-based, and nuanced.
-- **Citations:** Draft only from the citation pool built in Step 2. Use Chicago author-date format inline — e.g., (World Bank 2023), (ACLED 2026). Do not use letter codes. Do not introduce new sources during drafting. If a relevant claim cannot be grounded in a pool entry, state it as analytical judgement without a formal citation, or flag it for the user to verify.
-- **Probable citations:** Flag all Probable-tier citations inline: `(Source Year — unverified, please confirm before circulation)`.
+- **Citations:** Draft only from the final citation pool built in Step 2d. Use Chicago author-date format inline — e.g., (World Bank 2023), (ACLED 2026). Do not use letter codes. Do not introduce new sources during drafting. If a relevant claim cannot be grounded in a pool entry, state it as analytical judgement without a formal citation, or flag it for the user to verify.
+- **Prioritise User-Provided citations.** Every `[User-Provided]` source in the Citation Registry should be used at least once in the draft if it is relevant to the section topic. `[Model-Sourced]` citations supplement — they do not replace — User-Provided sources.
 - **Flags:** Where evidence is thin, say so. Where the user's uploaded inputs contain claims that could not be corroborated, flag them: "This claim could not be verified against available sources — please confirm from your own knowledge."
 - **Length:** Target the word range confirmed with the user in Step 1. For sections exceeding ~1,500 words, recommend splitting into named subsections.
 
@@ -1156,14 +1191,15 @@ Working from the user's uploaded inputs (if any) plus the citation pool and evid
 
 Before presenting the draft to the user, run a quick internal QA check:
 
-- Scan every in-text citation against the citation pool from Step 2.
-- Count Confirmed vs Probable citations.
-- Remove or flag any citation not present in the pool (Do Not Use violations).
+- Scan every in-text citation against the final citation pool from Step 2d.
+- Count User-Provided vs Model-Sourced citations.
+- Remove or flag any citation not present in the pool.
 - Check that no new sources were introduced during drafting.
+- Verify that all User-Provided sources were used at least once (if relevant to the section).
 
 Prepend a brief QA note to the draft:
 
-> **Citation QA:** Draft uses [X] Confirmed and [Y] Probable citations. [Z] passages reference claims without formal citations — these are marked [analytical judgement] for your review.
+> **Citation QA:** Draft uses [X] User-Provided and [Y] Model-Sourced citations. [Z] passages reference claims without formal citations — these are marked [analytical judgement] for your review.
 
 ---
 
@@ -1191,13 +1227,34 @@ When the user is satisfied:
 
 - Append a **References** section at the end of the draft body (before the AI Disclaimer). List every source cited in the draft in full Chicago style, grouped by tier:
 
-  **Confirmed Sources**
+  **User-Provided Sources**
   Author/Organisation. *Title*. Year. Publisher/URL.
 
-  **Probable Sources** *(unverified — please confirm before circulation)*
-  Author/Organisation. *Title if known*. Year.
+  **Model-Sourced: Internal** *(from WBG document search)*
+  Author/Organisation. *Title*. Year. Publisher/URL.
+
+  **Model-Sourced: External** *(from web search — verify before circulation)*
+  Author/Organisation. *Title*. Year. Publisher/URL.
 
   This reference list allows the user to check every citation and identify any hallucinations before circulation.
+
+- Present a **Next Step** block to guide the user to citation verification:
+
+  > ---
+  > **Next Step — Verify Your Citations**
+  >
+  > This draft contains [X] citations sourced from my searches (marked `[Model-Sourced]` in the references table above). To check these are accurate, open a new mAI conversation and type:
+  >
+  > *"Check the citations in this RRA draft"*
+  >
+  > Then paste the full draft into the conversation. mAI will check each Model-Sourced citation and correct any that can't be confirmed.
+  >
+  > This step is recommended before sharing or circulating the draft.
+  > ---
+
+  If all citations are `[User-Provided]` (no model-sourced ones), the block instead reads:
+
+  > *"All citations in this draft came from your uploaded materials. Citation verification is optional but available — open a new mAI conversation and say 'Check the citations in this RRA draft' if you'd like a second check."*
 
 - Offer: "Would you like me to export this section as a document?"
 - Flag remaining evidence gaps: "The following areas may benefit from additional evidence or your firsthand knowledge: [list]."
@@ -2365,3 +2422,128 @@ After the AI Disclaimer, append an italicised footer listing the primary skill a
 *Skills used: fcv-citation-checker | Also referenced: [list any other fcv- skills mentioned in the output]*
 
 If no other FCV skills were referenced, use: *Skills used: fcv-citation-checker*
+
+---
+
+**Name:** fcv-citation-verifier
+
+**Description:** Verifies citations in an RRA draft or any FCV document by re-retrieving each source and checking it matches the claim made. Designed to run after fcv-rra-section-drafter. Triggered by: "check the citations in this RRA draft", "verify citations", "citation check", "check my sources", "verify the references", "are these citations real", or any request to verify sources in a draft.
+
+**Content:**
+
+## FCV Citation Verifier
+
+Mechanically verifies citations in a document by re-retrieving each cited source and comparing it against the claim made. Returns a revised draft with failed citations corrected and a verification summary.
+
+Designed as a companion to the RRA Section Drafter, but works on any sourced FCV document.
+
+---
+
+### Guardrails
+
+- **Re-retrieve, don't guess.** For every citation you check, search for the exact source (title + author + year). Do not rely on your own knowledge to confirm or deny a citation — search for it.
+- **Do not fabricate verification results.** If you cannot find a source after searching, classify it as Unverified. Do not claim it is verified or fabricated based on reasoning alone.
+- **Do not add new citations.** Your job is to check existing citations, not to introduce new sources.
+- **Do not rewrite beyond affected passages.** When a citation fails, rewrite only the sentence or clause that referenced it. Do not restructure paragraphs or alter analytical conclusions.
+- **Preserve the analytical point.** When removing a failed citation, keep the underlying argument as uncited analytical narrative wherever the point is analytically sound. Change the attribution, not the substance.
+
+---
+
+### Step 1 — Intake
+
+Ask the user to paste or upload the document. If they have already provided it, proceed directly.
+
+Scan the document for:
+- All inline citations (Chicago author-date format)
+- The references table (if present)
+- Citation tags: `[User-Provided]`, `[Model-Sourced: Internal]`, `[Model-Sourced: External]`
+
+**If tags are present** (output from fcv-rra-section-drafter):
+- **Skip** all `[User-Provided]` citations — these are authoritative and require no verification.
+- **Check** all `[Model-Sourced: External]` citations first — these carry the highest hallucination risk.
+- **Then check** all `[Model-Sourced: Internal]` citations — lower risk but still worth confirming.
+
+**If no tags are present** (standalone use on any document):
+- Check all citations.
+
+Tell the user: *"I found [X] citations to verify ([Y] external, [Z] internal). I'll check each one now."*
+
+---
+
+### Step 2 — Build Verification Checklist
+
+For each citation to verify, extract:
+- The specific claim being made in the text
+- The source cited: author/organisation, title, year
+- The passage context (the sentence containing the citation)
+
+---
+
+### Step 3 — Re-Retrieve and Verify
+
+For each citation on the checklist:
+
+**3a. Search for the source**
+- Web search for the exact title + author/organisation + year
+- If it is a WBG document, also search internally
+- Make two search attempts before classifying as Unverified
+
+**3b. Compare the source against the claim**
+- If found: does the source support the specific claim made in the text?
+- If found but says something different: classify as Mismatched
+- If not found after two attempts: classify as Unverified
+
+---
+
+### Step 4 — Classify and Correct
+
+For each citation, apply one of three actions:
+
+| Classification | Criteria | Action |
+|---|---|---|
+| Verified | Source re-found; content supports the claim | Keep as-is |
+| Mismatched | Source re-found; content differs from the claim | Rewrite the sentence to accurately reflect what the source says, OR remove the citation and rewrite as uncited analytical narrative |
+| Unverified | Source not found after two search attempts | Remove the citation; rewrite the passage as uncited analytical narrative (e.g., "Analysts have noted that..." or "Evidence suggests...") |
+
+**Rewrite rules:**
+- Change only the sentence or clause affected by the failed citation
+- Preserve the analytical argument wherever the underlying point is sound
+- Do not restructure surrounding paragraphs
+- Do not introduce new citations as replacements
+
+---
+
+### Step 5 — Output
+
+Return two things:
+
+**1. The revised draft** with all corrections applied. Preserve all original formatting, headings, and structure.
+
+**2. A verification summary table:**
+
+| # | Citation | Status | Action Taken |
+|---|---|---|---|
+| 1 | (World Bank 2023) | Verified | — |
+| 2 | (ACLED 2025) | Verified | — |
+| 3 | (ICG 2024) | Mismatched | Rewritten to reflect actual source content |
+| 4 | (Smith & Jones 2023) | Unverified | Citation removed; passage rewritten as uncited narrative |
+
+**Result:** [X] verified, [Y] corrected, [Z] removed.
+
+If all citations verified: *"All [X] citations checked out. The draft is ready for circulation."*
+
+If corrections were made: *"I corrected [Y] citations and removed [Z]. Please review the changes — the analytical points are preserved but some sourcing has been adjusted. The corrected passages are noted in the table above."*
+
+---
+
+### AI Disclaimer
+
+*This skill verifies citations by re-searching for cited sources, but verification is constrained by search coverage and link accessibility. A Verified result means the source was re-found and appears to match — it is not a guarantee of accuracy. Always apply subject-matter judgement before operational use.*
+
+---
+
+### Skills Used Footer
+
+*Skills used: fcv-citation-verifier | Also referenced: [list any other fcv- skills mentioned in the output]*
+
+If no other FCV skills were referenced, use: *Skills used: fcv-citation-verifier*
