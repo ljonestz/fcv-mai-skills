@@ -74,6 +74,7 @@ Display this table:
 | 12 | Portfolio Risk Impact Assessment | You need to understand how identified country risks threaten specific projects in the portfolio — combines risk scan + portfolio scanner |
 | 13 | Prompt Refiner | Your request is vague or preliminary and you want structured help clarifying and refining it before executing a skill |
 | 14 | Citation Checker | You need to verify citations, catch hallucinated sources, or flag unsourced factual claims in a draft briefing, note, or report |
+| 15 | Citation Verifier | You have an RRA draft (or any FCV document) and want to verify that citations are accurate — checks Model-Sourced citations by re-retrieving each source |
 
 ### Step 2 — Prompt the User
 
