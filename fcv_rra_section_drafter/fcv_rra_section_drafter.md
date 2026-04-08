@@ -207,6 +207,7 @@ Working from the user's uploaded inputs (if any) plus the citation pool and evid
 - **Structure** the content according to RRA methodology conventions for the selected section and mode.
 - **Analytical framing:** Distinguish between structural/root causes, proximate triggers, and emerging risks. Balance risk factors with sources of resilience.
 - **Tone:** Analytical narrative prose (not bullet points). RRAs are substantive analytical documents — the language should be precise, evidence-based, and nuanced.
+- **Punctuation:** Do not use em dashes (—) anywhere in the draft. They are a recognisable AI writing marker. Substitute with commas, semicolons, colons, or restructured sentences.
 - **Citations:** Draft only from the final citation pool built in Step 2d. Use Chicago author-date format inline — e.g., (World Bank 2023), (ACLED 2026). Do not use letter codes. Do not introduce new sources during drafting. If a relevant claim cannot be grounded in a pool entry, state it as analytical judgement without a formal citation, or flag it for the user to verify.
 - **Prioritise User-Provided citations.** Every `[User-Provided]` source in the Citation Registry should be used at least once in the draft if it is relevant to the section topic. `[Model-Sourced]` citations supplement — they do not replace — User-Provided sources.
 - **Flags:** Where evidence is thin, say so. Where the user's uploaded inputs contain claims that could not be corroborated, flag them: "This claim could not be verified against available sources — please confirm from your own knowledge."
@@ -268,20 +269,20 @@ When the user is satisfied:
 - Present a **Next Step** block to guide the user to citation verification:
 
   > ---
-  > **Next Step — Verify Your Citations**
+  > **Next Step — Citation Verification**
   >
-  > This draft contains [X] citations sourced from my searches (marked `[Model-Sourced]` in the references table above). To check these are accurate, open a new mAI conversation and type:
+  > This draft contains [X] Model-Sourced citations (marked in the references table above). I'll verify them now — re-retrieving each source and correcting any that can't be confirmed.
   >
-  > *"Check the citations in this RRA draft"*
+  > Type **skip** if you'd prefer to circulate the draft without verifying.
   >
-  > Then paste the full draft into the conversation. mAI will check each Model-Sourced citation and correct any that can't be confirmed.
-  >
-  > This step is recommended before sharing or circulating the draft.
+  > *(Beginning citation verification...)*
   > ---
+
+  After presenting this block, immediately begin the Citation Verifier workflow (Steps 2–5 of fcv-citation-verifier) inline. The draft is already in the conversation context — no paste required.
 
   If all citations are `[User-Provided]` (no model-sourced ones), the block instead reads:
 
-  > *"All citations in this draft came from your uploaded materials. Citation verification is optional but available — open a new mAI conversation and say 'Check the citations in this RRA draft' if you'd like a second check."*
+  > *"All citations came from your uploaded materials — no Model-Sourced citations to verify. Type **verify citations** if you'd like a second check; otherwise the draft is ready to circulate."*
 
 - Offer: "Would you like me to export this section as a document?"
 - Flag remaining evidence gaps: "The following areas may benefit from additional evidence or your firsthand knowledge: [list]."
@@ -301,5 +302,7 @@ This output was produced by an LLM-assisted tool (mAI). It is intended as a supp
 After the AI Disclaimer, append an italicised footer listing the primary skill and any other FCV skills referenced or recommended in the output:
 
 *Skills used: fcv-rra-section-drafter | Also referenced: [list any other fcv- skills mentioned in the output, e.g., fcv-rra-mini-update]*
+
+If citation verification ran in this session (user did not type skip), use: *Skills used: fcv-rra-section-drafter | fcv-citation-verifier*
 
 If no other FCV skills were referenced, use: *Skills used: fcv-rra-section-drafter*
