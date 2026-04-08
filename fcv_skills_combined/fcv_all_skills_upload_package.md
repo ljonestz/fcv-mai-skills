@@ -1119,13 +1119,20 @@ State the count explicitly: *"I extracted [X] sources from your uploaded materia
 
 After building the Citation Registry, search for further evidence relevant to the selected section. Collect results into a **Candidate Sources** list — separate from the Citation Registry:
 
-- **External sources via web search** — draw from the trusted source ecosystem calibrated to the section topic:
+- **Operational Search (external via web search)** — draw from the trusted source ecosystem calibrated to the section topic:
   - Conflict & security: ACLED, UCDP, ICG, Crisis Watch, country-specific trackers
   - Political & governance: Freedom House, BTI, V-Dem, EIU
   - Humanitarian: OCHA, UNHCR, IOM, FEWS NET, IPC
   - Climate-conflict: ND-GAIN, INFORM Risk Index
   - Human rights: Human Rights Watch, Amnesty International, UN Panel of Experts
-  - Academic literature: peer-reviewed journals and working papers from ODI, CGD, LSE, SIPRI, Chatham House, Crisis Group
+  - Established international media: Reuters, AFP, BBC, Al Jazeera
+
+- **Academic Literature Sub-Search (external via web search)** — run a dedicated search targeting peer-reviewed academic sources relevant to the section topic and country:
+  - Journals: *Journal of Conflict Resolution*, *World Development*, *African Affairs*, *Conflict Security & Development*, *Journal of Peace Research*, *Third World Quarterly*
+  - Research institutes and working papers: ODI, CGD, LSE Conflict & Civil Wars research programme, SIPRI, Chatham House, Crisis Group, Brookings, RAND
+  - Search terms calibrated to the section topic and country — e.g., "[Country] state capacity", "[Country] conflict drivers", "[Arena topic] fragility"
+  - Prefer sources that are recent (within 10 years) OR foundational/highly cited in the field
+  - Tag all results: `[Model-Sourced: External – Academic]`
 
 - **WBG internal sources via document search:** SCDs, CPFs, country briefs, ISRs/ICRs
 
@@ -1134,7 +1141,7 @@ For each candidate source found, record:
 - Title
 - Year
 - One-line summary of what the source says
-- Tag: `[Model-Sourced: Internal]` for WBG document search results, or `[Model-Sourced: External]` for web search results
+- Tag: `[Model-Sourced: Internal]` for WBG document search results; `[Model-Sourced: External]` for operational web search results; `[Model-Sourced: External – Academic]` for academic literature sub-search results
 
 **These are candidates, not yet part of the citation pool.** Do not use them in drafting until Step 2c-ii is complete.
 
@@ -1162,11 +1169,12 @@ Merge the Citation Registry with the approved Candidate Sources. The final pool 
 
 - `[User-Provided]` — from uploaded materials. Authoritative. No verification needed.
 - `[Model-Sourced: Internal]` — from WBG internal document search. Lower hallucination risk.
-- `[Model-Sourced: External]` — from web search. Higher hallucination risk — these are the primary targets for downstream verification.
+- `[Model-Sourced: External]` — from operational web search. Higher hallucination risk — primary targets for downstream verification.
+- `[Model-Sourced: External – Academic]` — from academic literature sub-search. Higher hallucination risk — verify titles and authors before circulation.
 
 Use Chicago author-date format throughout: `(Organisation Year)` or `(Author Year)` inline. Do not use letter codes.
 
-These tags will appear in the final references table (Step 7) and are used by the Citation Verifier skill if the user runs it after this skill.
+These tags will appear in the final references table (Step 8) and are used by the Citation Verifier skill if the user runs it after this skill.
 
 **2e. Extract evidence anchors**
 
@@ -1174,7 +1182,26 @@ Before drafting, extract 5–8 key insights relevant to the section, each tied t
 
 ---
 
-### Step 3 — Build the Initial Draft
+### Step 3 — Draft Outline & Argument Preview
+
+Before writing any prose, produce a structured outline of the section. This gives the user a chance to confirm framing and redirect emphasis before a full draft is committed to.
+
+The outline must contain:
+- Proposed subheadings for the section, following RRA methodology conventions for the selected section type and mode
+- For each subheading: 2–3 sentences setting out the key argument, finding, or analytical claim that subheading will make, and the 1–2 evidence anchors from the citation pool that will ground it
+- A brief note on any subheading where evidence is thin and a gap flag will appear in the full draft
+
+Present the outline and ask:
+- "Does this structure reflect how you want to approach the section?"
+- "Are there arguments here you'd redirect, or themes you'd add or drop?"
+
+**Do not proceed to Step 4 until the user confirms or provides feedback.** If the user redirects, adjust the outline and re-present before drafting begins.
+
+This step applies to all drafts regardless of whether a NotebookLM synthesis was uploaded. For NotebookLM-informed drafts the outline will be more evidence-dense from the start; it is especially valuable when no pre-existing draft or synthesis has been provided.
+
+---
+
+### Step 4 — Build the Initial Draft
 
 Working from the user's uploaded inputs (if any) plus the citation pool and evidence anchors built in Step 2:
 
@@ -1189,7 +1216,7 @@ Working from the user's uploaded inputs (if any) plus the citation pool and evid
 
 ---
 
-### Step 4 — Citation QA Pass
+### Step 5 — Citation QA Pass
 
 Before presenting the draft to the user, run a quick internal QA check:
 
@@ -1205,7 +1232,7 @@ Prepend a brief QA note to the draft:
 
 ---
 
-### Step 5 — Present for Review
+### Step 6 — Present for Review
 
 Present the draft (with QA note) and ask:
 - "Please review for accuracy. Are there factual errors, missing context, or anything I've overstated or understated?"
@@ -1213,7 +1240,7 @@ Present the draft (with QA note) and ask:
 
 ---
 
-### Step 6 — Iterative Refinement
+### Step 7 — Iterative Refinement
 
 Incorporate the user's corrections and additions. You may go through 2–3 rounds. At each round:
 - Apply the user's changes faithfully.
@@ -1223,7 +1250,7 @@ Incorporate the user's corrections and additions. You may go through 2–3 round
 
 ---
 
-### Step 7 — Consolidation
+### Step 8 — Consolidation
 
 When the user is satisfied:
 
