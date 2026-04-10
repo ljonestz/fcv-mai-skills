@@ -61,7 +61,7 @@ mAI Skills/                — Platform documentation
 
 ---
 
-## The 16 Skills
+## The 18 Skills
 
 | # | Skill ID | File location |
 |---|---|---|
@@ -82,6 +82,7 @@ mAI Skills/                — Platform documentation
 | 15 | fcv-prompt-refiner | `fcv_prompt_refiner/fcv_prompt_refiner.md` |
 | 16 | fcv-citation-checker | `fcv_citation_checker/fcv_citation_checker.md` |
 | 17 | fcv-citation-verifier | `fcv_citation_verifier/fcv_citation_verifier.md` |
+| 18 | fcv-edp-assessment | `fcv_edp_assessment/fcv_edp_assessment.md` |
 
 **Retired:** `fcv-isr-flag-reviewer` — replaced by `fcv-isr-portfolio-screener` (2026-03-31).
 
@@ -132,8 +133,9 @@ Every analytical skill must include:
 | 2026-04-01 | Four new skills added: Country Risk Scan, Country Portfolio Scanner, Portfolio Risk Impact Assessment, and Prompt Refiner. Package expanded from 11 to 15 skills. |
 | 2026-04-02 | Citation Checker added as a specialist skill for citation verification, hallucination detection, and unsourced-claim flagging. Package expanded to 16 skills. |
 | 2026-04-07 | Citation integrity overhaul: RRA Section Drafter citation pipeline redesigned (Citation Registry, Candidate Sources with Internal/External tags, confirmation pause at Step 2c-ii, handoff block at Step 7). New fcv-citation-verifier skill added for mechanical re-retrieval-based citation checking. Package expanded to 17 skills. |
+| 2026-04-10 | EDP Assessment skill added for FCV Envelope (PRA/RECA) eligibility assessment via the Extended Data Pathway. Two-phase workflow with embedded Annex 1 indicators. Package expanded to 18 skills. |
 
-**Future skills flagged (not yet built):** Country Engagement Brief, Do No Harm Standalone, PRA Eligibility Advisory.
+**Future skills flagged (not yet built):** Country Engagement Brief, Do No Harm Standalone.
 
 ---
 
