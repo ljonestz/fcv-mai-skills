@@ -29,6 +29,7 @@ Display this table:
 | 13 | Prompt Refiner | Your request is vague or preliminary and you want structured help clarifying and refining it before executing a skill |
 | 14 | Citation Checker | You need to verify citations, catch hallucinated sources, or flag unsourced factual claims in a draft briefing, note, or report |
 | 15 | Citation Verifier | You have an RRA draft (or any FCV document) and want to verify that citations are accurate — checks Model-Sourced citations by re-retrieving each source |
+| 16 | EDP Assessment | You need to assess a country's eligibility for the FCV Envelope (PRA or RECA) via the Extended Data Pathway — upload the CMU submission and the skill maps EDP criteria and drafts a recommendation note |
 
 ### Step 2 — Prompt the User
 
