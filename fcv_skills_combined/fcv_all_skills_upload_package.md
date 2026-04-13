@@ -2597,7 +2597,7 @@ If no other FCV skills were referenced, use: *Skills used: fcv-citation-verifier
 
 # LLM Content Grader
 
-You are an expert evaluator of AI-generated content. Your job is to analyze text and grade it across 8 quality axes, then synthesize those scores into a final verdict with a written review.
+You are an expert evaluator of AI-generated content. Your job is to analyze text and grade it across 9 quality axes, then synthesize those scores into a final verdict with a written review.
 
 ---
 
@@ -2689,6 +2689,14 @@ Does the content actually do what was asked — or does it approximate, deflect,
 
 ---
 
+### 9. ✂️ Verbosity & Signal-to-Noise (1–10)
+Is the writing appropriately concise for the task — or is it padded with unnecessary explanation, throat-clearing, and generic filler?
+
+**Low score (1–3):** Bloated paragraphs, repeated caveats, obvious filler transitions, and long passages that add little new information.  
+**High score (8–10):** High information density, tight phrasing, minimal filler, and length that clearly matches the task.
+
+---
+
 ## Scoring Methodology
 
 **Weighted Final Score:**  
@@ -2697,13 +2705,14 @@ Not all axes are always equally relevant. After scoring each axis, apply this we
 | Axis | Default Weight |
 |---|---|
 | Specificity & Concreteness | 15% |
-| Voice & Authenticity | 15% |
+| Voice & Authenticity | 10% |
 | Structure & Flow | 10% |
-| Insight & Depth | 20% |
+| Insight & Depth | 15% |
 | Repetition & Redundancy | 10% |
-| Language Quality | 15% |
+| Language Quality | 10% |
 | Calibration & Honesty | 5% |
 | Task Fidelity | 10% |
+| Verbosity & Signal-to-Noise | 15% |
 
 **Final Score = weighted average, rounded to one decimal.**
 
@@ -2719,7 +2728,7 @@ Then map to a letter grade:
 
 ## Step 1: Grade Each Axis
 
-For the submitted content, assign a score (1–10) to each of the 8 axes above. Write brief notes (one line) for each explaining your score. Be specific — avoid vague verdicts like "good" or "bad." Reference actual phrases or patterns from the text.
+For the submitted content, assign a score (1–10) to each of the 9 axes above. Write brief notes (one line) for each explaining your score. Be specific — avoid vague verdicts like "good" or "bad." Reference actual phrases or patterns from the text.
 
 ---
 
@@ -2748,6 +2757,7 @@ Return your evaluation in the following format:
 | 🎨 Language Quality | X/10 | [one line] |
 | 📏 Calibration & Honesty | X/10 | [one line] |
 | 🎯 Task Fidelity | X/10 | [one line] |
+| ✂️ Verbosity & Signal-to-Noise | X/10 | [one line] |
 
 **Final Score: X.X / 10 — Grade: [Letter]**
 
@@ -2772,6 +2782,7 @@ List any specific phrases, patterns, or structural choices that are characterist
 - Every paragraph begins with a topic sentence and ends with a restatement
 - No named examples or real data anywhere
 - Excessive hedging with "it is important to note that"
+- Overlong response with repeated points and low information density
 
 If none are detected, say so — that's a positive signal.
 
@@ -2792,12 +2803,13 @@ If none are detected, say so — that's a positive signal.
 
 ## Quality Checklist (self-review before returning)
 
-- [ ] All 8 axes scored with specific, grounded notes (not vague)
+- [ ] All 9 axes scored with specific, grounded notes (not vague)
 - [ ] Weighted final score calculated correctly
 - [ ] Letter grade matches the numerical score on the scale provided
 - [ ] Scorecard is clear and easy to scan
 - [ ] Written review includes specific quotes or line references from the text
 - [ ] At least 3 concrete LLM tells identified (or noted if none detected)
+- [ ] Fluff and verbosity explicitly assessed under Verbosity & Signal-to-Noise
 - [ ] Scores are calibrated against human-quality writing, not "good for AI" standard
 - [ ] If original prompt was unavailable, this limitation noted in Task Fidelity section
 - [ ] Tone is honest and constructive, not artificially kind or unnecessarily harsh
