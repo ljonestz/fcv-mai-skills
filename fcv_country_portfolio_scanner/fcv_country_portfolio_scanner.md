@@ -41,13 +41,13 @@ Use mAI's internal **project search** tool to retrieve:
 - All active projects in the specified country (and any planned/pipeline if requested).
 - For each project: project name, sector classification, status, approval amount, current disbursement status, project development objective (PDO).
 - Any available risk ratings or FCV flags from the project metadata.
-- **Project document links:** For each project, retrieve links to the Project Appraisal Document (PAD), Implementation Status & Results (ISR) reports, and any FCV/Safeguards assessments available in mAI's internal document store.
+- **Project document links:** For each project, retrieve a **set of relevant document links** (not just one), including where available: PAD, latest ISR (and prior ISR if useful), restructuring papers, ICR/ICR Review, aide memoires, and FCV/Safeguards assessments in mAI's internal document store.
 
 **Search strategy:**
 - Query: "[Country name] World Bank projects active"
 - Filter by: Country = [input country], Status = Active (or Active + Pipeline if user requested)
 - Sort by: Sector, then by approval date (most recent first)
-- For each project found, use mAI's internal **document search** tool to locate: "[Project Name] PAD" and "[Project Name] ISR" to retrieve document links for inclusion in output.
+- For each project found, use mAI's internal **document search** tool with multiple queries (for example: "[Project Name] PAD", "[Project Name] ISR", "[Project Name] restructuring", "[Project Name] ICR", "[Project Name] safeguards") and return multiple labeled links per key project.
 
 ---
 
@@ -73,13 +73,13 @@ For each project, assess FCV relevance:
 
 ## Step 5: Generate Output
 
-Present the portfolio overview in the requested format. **All project names should be hyperlinked** to their Project Appraisal Document (PAD) or latest ISR when available.
+Present the portfolio overview in the requested format. **All project names should be hyperlinked** with one or more relevant project document links (PAD/ISR and other key documents when available).
 
 ### Format Option A: Summary Table (default)
 
 | Sector | # Projects | Total Funding (USD M) | FCV-Relevant | Key Projects | Status Snapshot |
 |---|---|---|---|---|---|
-| [Sector] | [n] | [amount] | [count] | [project names as links: e.g., "[Health Project XYZ](link-to-PAD)", 1–2 per sector] | [e.g., "3 impl., 1 prep."] |
+| [Sector] | [n] | [amount] | [count] | [project names with document bundle links: e.g., "Health Project XYZ ([PAD](url) | [ISR Apr-2026](url) | [ICR](url))", 1-2 per sector] | [e.g., "3 impl., 1 prep."] |
 
 Followed by a **Narrative Summary** (250–400 words):
 
@@ -93,7 +93,7 @@ Followed by a **Narrative Summary** (250–400 words):
 For each sector, provide:
 
 - **Sector name** (bold heading)
-- Active projects: List with [project name](link-to-document) hyperlinked to PAD or ISR, followed by PDO summary, status, and budget
+- Active projects: List each project with a small labeled link bundle (for example, [PAD](url), [Latest ISR](url), [Restructuring](url) as available), followed by PDO summary, status, and budget
 - FCV flags
 - Cross-sector linkages or dependencies
 
@@ -108,10 +108,11 @@ Present summary table first, then sector narratives.
 When including hyperlinks to project documents:
 
 - **Link text:** Use the project's short name or acronym (e.g., "Health Project XYZ" or "HPX") for readability in tables; full project name in narrative sections.
+- **Number of links per key project:** Include multiple links where possible (target 2-4 links for key projects) rather than only one document.
 - **Link target:** Prioritize links to:
   1. Most recent **Implementation Status & Results (ISR)** report (for active projects)
-  2. **Project Appraisal Document (PAD)** (if ISR unavailable)
-  3. **FCV or Safeguards Assessment** (if FCV-flagged project)
+  2. **Project Appraisal Document (PAD)**
+  3. Most relevant additional document(s): restructuring paper, ICR/ICR Review, aide memoire, and/or FCV or Safeguards assessment (as available)
 - **Link availability:** If document links are not available in mAI's internal store, note in the output: "[Project Name] (document links unavailable in current system)".
 - **Format:** Standard markdown: `[display text](url-to-document)`
 
@@ -133,7 +134,7 @@ Append a brief footer:
 - [ ] FCV-relevant projects correctly flagged (not over-flagged)
 - [ ] Funding amounts labeled as approval values
 - [ ] Output format matches user request (table / narrative / both)
-- [ ] **Project names hyperlinked** to PAD, ISR, or relevant documents where available
+- [ ] **Project names hyperlinked** with multiple relevant document links per key project where available (not only PAD/ISR)
 - [ ] Metadata note included
 - [ ] No confidential or closed project details unnecessarily exposed
 

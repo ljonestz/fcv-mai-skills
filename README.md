@@ -1,6 +1,6 @@
 # FCV mAI Skills Package
 
-A set of 16 AI-assisted workflow skills for the **FCV (Fragility, Conflict & Violence) Group**, built for the [mAI platform](https://ai.worldbank.org/mai). Skills support FCV Country Coordinators and specialist staff in recurring analytical, review, and advisory tasks.
+A set of **18 AI-assisted workflow skills** for the **FCV (Fragility, Conflict & Violence) Group**, built for the [mAI platform](https://ai.worldbank.org/mai). Skills support FCV Country Coordinators and specialist staff in recurring analytical, review, and advisory tasks.
 
 ---
 
@@ -22,12 +22,16 @@ A set of 16 AI-assisted workflow skills for the **FCV (Fragility, Conflict & Vio
 | 12 | `fcv-portfolio-risk-impact-assessment` | Cross-analyze country risks with portfolio to assess project vulnerability |
 | 13 | `fcv-prompt-refiner` | Clarify and refine user requests before execution |
 | 14 | `fcv-citation-checker` | Verify citations, catch hallucinated sources, and flag unsourced claims in written documents |
+| 15 | `fcv-citation-verifier` | Verify that citations are accurate by re-retrieving sources in RRA drafts and other FCV documents |
+| 16 | `fcv-llm-content-grader` | Grade and evaluate AI-generated content across multiple quality axes with detailed scoring and review |
+| 17 | `fcv-ai-disclaimer` | Append the standard FCV AI-generated output disclaimer to final, externally-facing outputs |
+| 18 | `fcv-skills-overview` | Navigate the complete FCV skills package and select the right tool for your task |
 
-**Utility:** Skills Overview, AI Disclaimer, Prompt Refiner
+**Utility:** Skills Overview, AI Disclaimer, Prompt Refiner, LLM Content Grader
 
-**Tier 1 (core, high-frequency):** Project Screener, RRA Section Drafter, CPF Peer Reviewer, Risk Briefing Generator, FCV Lens Note Drafter, RRA Mini Update
+**Tier 1 (core, high-frequency):** Project Screener, RRA Section Drafter, CPF Peer Reviewer, Risk Briefing Generator, FCV Lens Note Drafter, RRA Mini Update, Country Risk Scan
 
-**Tier 2 (specialist):** ISR Portfolio Screener, Lessons Learned Extractor, Trusted Source Analyst, Country Portfolio Scanner, Portfolio Risk Impact Assessment, Citation Checker
+**Tier 2 (specialist, recurrent):** ISR Portfolio Screener, Lessons Learned Extractor, Trusted Source Analyst, Country Portfolio Scanner, Portfolio Risk Impact Assessment, Citation Checker, Citation Verifier
 
 ---
 
@@ -83,10 +87,10 @@ Every skill file follows this structure:
 |---|---|
 | 2026-03-31 | Initial build: 11 skills written and quality-checked |
 | 2026-03-31 | mAI reviewer amendments applied to 8 skills |
-| 2026-04-01 | Four new skills added: Country Risk Scan, Country Portfolio Scanner, Portfolio Risk Impact Assessment, Prompt Refiner. Updated tier structure (Tier 1: 7 skills; Tier 2: 5 skills; Utility: 3 skills). Total package now 15 skills. |
-| 2026-04-02 | Added Citation Checker as a Tier 2 specialist skill for citation verification, hallucination detection, and unsourced-claim flagging. Total package now 16 skills. |
-| 2026-04-01 | Pre-rollout refinements: Project Screener restructured; RRA Mini Update check-in added; tier reclassification (Tier 1: 6 skills; Tier 2: 3 skills) |
-| 2026-04-01 | Repo created; skill files version-controlled on GitHub |
+| 2026-04-01 | Four new skills added: Country Risk Scan, Country Portfolio Scanner, Portfolio Risk Impact Assessment, Prompt Refiner. Updated tier structure. |
+| 2026-04-02 | Added Citation Checker as Tier 2 specialist skill. Total package: 16 skills. |
+| 2026-04-07 | Citation integrity overhaul: added Citation Verifier skill. Total package: 17 skills. |
+| 2026-04-13 | Added LLM Content Grader utility skill for evaluating AI-generated content. Total package now 18 skills. Updated hyperlink and document-link requirements across multiple skills. |
 
 **Retired:** `fcv-isr-flag-reviewer` — replaced by `fcv-isr-portfolio-screener` (2026-03-31).
 

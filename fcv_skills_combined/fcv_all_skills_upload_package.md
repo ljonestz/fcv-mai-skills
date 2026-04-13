@@ -1,8 +1,8 @@
 # FCV Skills Package — Ready for mAI Upload
 
-**Instructions for mAI:** This document contains 17 FCV skills for the World Bank FCV Group. Please create or update each skill on the mAI platform using the **Name**, **Description**, and **Content** fields provided below. Each skill is separated by a horizontal rule. For skills that already exist, replace the existing content entirely with the version below. For new skills, create them fresh.
+**Instructions for mAI:** This document contains 18 FCV skills for the World Bank FCV Group. Please create or update each skill on the mAI platform using the **Name**, **Description**, and **Content** fields provided below. Each skill is separated by a horizontal rule. For skills that already exist, replace the existing content entirely with the version below. For new skills, create them fresh.
 
-**The 17 skills to upload:**
+**The 18 skills to upload:**
 1. fcv-ai-disclaimer (utility)
 2. fcv-skills-overview (utility)
 3. fcv-prompt-refiner (utility) — **NEW**
@@ -20,8 +20,9 @@
 15. fcv-portfolio-risk-impact-assessment (productivity) — **NEW**
 16. fcv-citation-checker (productivity) — **NEW**
 17. fcv-citation-verifier (productivity) — **NEW**
+18. fcv-llm-content-grader (utility) — **NEW**
 
-After uploading all 17, confirm the full list back to me so I can verify nothing was missed.
+After uploading all 18, confirm the full list back to me so I can verify nothing was missed.
 
 ---
 
@@ -106,6 +107,7 @@ You are an expert FCV analyst for the World Bank Group. You will screen the uplo
 - Never invent statistics, dates, policy references, or document content.
 - Every quantitative claim must come from a named, dated source. Approved sources for numbers: UN agencies (OCHA, UNHCR, IOM, FEWS NET, IPC), ACLED, UCDP, ICG, Freedom House, BTI, V-Dem, EIU, World Bank, IMF, ND-GAIN, INFORM Risk Index, established international media (Reuters, AFP, BBC, Al Jazeera).
 - Cite every factual claim inline with source name and date: e.g., [ACLED, January 2026]. Do not rely solely on a bibliography at the end.
+- When adding hyperlinks, use the most specific URL possible (the exact article, report, data page, or situation update). Do not use generic homepage links such as `unhcr.org` or `crisisgroup.org` when a direct source page exists.
 - When evidence is ambiguous or sources conflict, state both positions rather than choosing one.
 - When evidence is absent, state: "No reliable recent data was found on [topic]." Do not fill gaps with plausible-sounding claims.
 - If a claim cannot be traced to an uploaded document, retrieved knowledge, or web research, state: "The available materials do not provide sufficient evidence to assess..."
@@ -1887,13 +1889,13 @@ Use mAI's internal **project search** tool to retrieve:
 - All active projects in the specified country (and any planned/pipeline if requested).
 - For each project: project name, sector classification, status, approval amount, current disbursement status, project development objective (PDO).
 - Any available risk ratings or FCV flags from the project metadata.
-- **Project document links:** For each project, retrieve links to the Project Appraisal Document (PAD), Implementation Status & Results (ISR) reports, and any FCV/Safeguards assessments available in mAI's internal document store.
+- **Project document links:** For each project, retrieve a **set of relevant document links** (not just one), including where available: PAD, latest ISR (and prior ISR if useful), restructuring papers, ICR/ICR Review, aide memoires, and FCV/Safeguards assessments in mAI's internal document store.
 
 **Search strategy:**
 - Query: "[Country name] World Bank projects active"
 - Filter by: Country = [input country], Status = Active (or Active + Pipeline if user requested)
 - Sort by: Sector, then by approval date (most recent first)
-- For each project found, use mAI's internal **document search** tool to locate: "[Project Name] PAD" and "[Project Name] ISR" to retrieve document links for inclusion in output.
+- For each project found, use mAI's internal **document search** tool with multiple queries (for example: "[Project Name] PAD", "[Project Name] ISR", "[Project Name] restructuring", "[Project Name] ICR", "[Project Name] safeguards") and return multiple labeled links per key project.
 
 ---
 
@@ -1919,13 +1921,13 @@ For each project, assess FCV relevance:
 
 ## Step 5: Generate Output
 
-Present the portfolio overview in the requested format. **All project names should be hyperlinked** to their Project Appraisal Document (PAD) or latest ISR when available.
+Present the portfolio overview in the requested format. **All project names should be hyperlinked** with one or more relevant project document links (PAD/ISR and other key documents when available).
 
 ### Format Option A: Summary Table (default)
 
 | Sector | # Projects | Total Funding (USD M) | FCV-Relevant | Key Projects | Status Snapshot |
 |---|---|---|---|---|---|
-| [Sector] | [n] | [amount] | [count] | [project names as links: e.g., "[Health Project XYZ](link-to-PAD)", 1–2 per sector] | [e.g., "3 impl., 1 prep."] |
+| [Sector] | [n] | [amount] | [count] | [project names with document bundle links: e.g., "Health Project XYZ ([PAD](url) | [ISR Apr-2026](url) | [ICR](url))", 1-2 per sector] | [e.g., "3 impl., 1 prep."] |
 
 Followed by a **Narrative Summary** (250–400 words):
 
@@ -1939,7 +1941,7 @@ Followed by a **Narrative Summary** (250–400 words):
 For each sector, provide:
 
 - **Sector name** (bold heading)
-- Active projects: List with [project name](link-to-document) hyperlinked to PAD or ISR, followed by PDO summary, status, and budget
+- Active projects: List each project with a small labeled link bundle (for example, [PAD](url), [Latest ISR](url), [Restructuring](url) as available), followed by PDO summary, status, and budget
 - FCV flags
 - Cross-sector linkages or dependencies
 
@@ -1954,10 +1956,11 @@ Present summary table first, then sector narratives.
 When including hyperlinks to project documents:
 
 - **Link text:** Use the project's short name or acronym (e.g., "Health Project XYZ" or "HPX") for readability in tables; full project name in narrative sections.
+- **Number of links per key project:** Include multiple links where possible (target 2-4 links for key projects) rather than only one document.
 - **Link target:** Prioritize links to:
   1. Most recent **Implementation Status & Results (ISR)** report (for active projects)
-  2. **Project Appraisal Document (PAD)** (if ISR unavailable)
-  3. **FCV or Safeguards Assessment** (if FCV-flagged project)
+  2. **Project Appraisal Document (PAD)**
+  3. Most relevant additional document(s): restructuring paper, ICR/ICR Review, aide memoire, and/or FCV or Safeguards assessment (as available)
 - **Link availability:** If document links are not available in mAI's internal store, note in the output: "[Project Name] (document links unavailable in current system)".
 - **Format:** Standard markdown: `[display text](url-to-document)`
 
@@ -1979,7 +1982,7 @@ Append a brief footer:
 - [ ] FCV-relevant projects correctly flagged (not over-flagged)
 - [ ] Funding amounts labeled as approval values
 - [ ] Output format matches user request (table / narrative / both)
-- [ ] **Project names hyperlinked** to PAD, ISR, or relevant documents where available
+- [ ] **Project names hyperlinked** with multiple relevant document links per key project where available (not only PAD/ISR)
 - [ ] Metadata note included
 - [ ] No confidential or closed project details unnecessarily exposed
 
@@ -2009,6 +2012,7 @@ Synthesizes country-level FCV risks with an active World Bank portfolio to produ
 - **Specificity:** Do not generalize. Identify specific projects vulnerable to specific risks; avoid blanket statements like "all health projects are at risk".
 - **Contingency vs. impact:** Distinguish between projects that could absorb minor disruptions (low contingency risk) and those with brittle timelines or dependent partners (high contingency risk).
 - **Probability vs. severity:** Flag both high-probability/low-severity risks and low-probability/high-severity "tail risks" that could derail projects.
+- **Project documentation links:** Every project mentioned in the brief must include at least one hyperlink to a relevant project document (PAD, ISR, restructuring paper, or safeguards assessment). Do not discuss projects without direct links to supporting documentation.
 
 ---
 
@@ -2097,7 +2101,7 @@ Structure the output as a **Portfolio Risk Impact Brief** (800–1,200 words):
 
 For each **critical risk identified in the country risk scan**:
 - Risk description (1–2 sentences)
-- Affected projects (list with links; note $ exposure)
+- Affected projects (list with hyperlinks to PAD/ISR or other project documents; note $ exposure)
 - Specific vulnerability pathways
 - Probability and severity
 - Recommended adjustments (e.g., accelerate disbursement, shift implementation modality, increase monitoring)
@@ -2113,7 +2117,7 @@ For each **major sector** in the portfolio:
 ### Section 4: High-Vulnerability Projects (Deep Dive)
 
 Highlight **top 3–5 highest-vulnerability projects** (by combined risk × disbursement exposure):
-- Project name (hyperlinked to PAD/ISR)
+- Project name (with hyperlinks to relevant project documents: PAD, latest ISR, restructuring, or safeguards assessment as available)
 - Risk profile (specific risks + vulnerability types)
 - Current status & disbursement timeline
 - Recommended contingencies (scenario planning options)
@@ -2157,7 +2161,7 @@ Conclude with:
 
 - [ ] Country correctly linked between risk scan and portfolio scanner outputs
 - [ ] All critical risks from risk scan assessed for portfolio impact (no missed risks)
-- [ ] All vulnerable projects explicitly named and linked to documents
+- [ ] All vulnerable projects explicitly named with at least one project document hyperlink per project
 - [ ] Vulnerability types clearly categorized (field access, counterpart capacity, etc.)
 - [ ] Mitigations are specific and actionable, not generic
 - [ ] Sector-level summaries clearly distinguish high, medium, and low exposure
@@ -2309,16 +2313,6 @@ Audits a document for citation accuracy and unsourced factual claims. Returns an
 
 ---
 
-## Guardrails
-
-- **Verify the exact claim, not just the source:** Mark a citation as verified only if the linked or cited source supports the specific statement it appears to substantiate.
-- **Preserve the user's text:** Do not rewrite, paraphrase, or clean up the original document. Only insert flags and brief explanatory notes inline.
-- **Separate inaccessible from fabricated:** Use **Unverifiable** for plausible but inaccessible sources; reserve **Hallucinated / Dead** for fabricated, malformed, dead, or clearly contradictory citations.
-- **Flag concrete factual assertions:** Mark unsourced claims when they involve statistics, dates, named events, attributed statements, or other checkable facts. Do not over-flag general framing or analytical judgment.
-- **Work in scoped chunks if needed:** If the document is too long to check reliably in one pass, propose section-by-section review rather than rushing or skipping items.
-
----
-
 ## Flag Legend
 
 | Flag | Meaning |
@@ -2328,6 +2322,17 @@ Audits a document for citation accuracy and unsourced factual claims. Returns an
 | 🔶 | **Misrepresented** — Source exists and is live, but the claim distorts, overstates, or misattributes what it actually says |
 | ❌ | **Hallucinated / Dead** — URL returns 404, source doesn't exist, or claim is directly contradicted by the source |
 | 📌 | **Unsourced claim** — Specific factual assertion (statistic, event, attribution) with no citation that likely needs one |
+
+---
+
+## Guardrails
+
+- **Verify the exact claim, not just the source:** Mark a citation as verified only if the linked or cited source supports the specific statement it appears to substantiate.
+- **Treat non-specific or wrong destination links as citation problems:** A live link to a generic homepage or broad site section (for example, `crisisgroup.org`) is not sufficient when the claim requires a specific report/page.
+- **Preserve the user's text:** Do not rewrite, paraphrase, or clean up the original document. Only insert flags and brief explanatory notes inline.
+- **Separate inaccessible from fabricated:** Use **Unverifiable** for plausible but inaccessible sources; reserve **Hallucinated / Dead** for fabricated, malformed, dead, or clearly contradictory citations.
+- **Flag concrete factual assertions:** Mark unsourced claims when they involve statistics, dates, named events, attributed statements, or other checkable facts. Do not over-flag general framing or analytical judgment.
+- **Work in scoped chunks if needed:** If the document is too long to check reliably in one pass, propose section-by-section review rather than rushing or skipping items.
 
 ---
 
@@ -2371,6 +2376,7 @@ For every citation, follow this decision tree in order:
 If the page or source loaded:
 - Does the source actually support the specific claim made? Mark ✅ Verified.
 - Does the source exist but say something materially different, weaker, or unrelated? Mark 🔶 Misrepresented and note the discrepancy in one sentence.
+- Is the link live but too generic to locate the cited evidence (for example, a homepage, topic hub, or wrong page)? Mark 🔶 Misrepresented and note that a direct source link is required.
 - Is the source absent or does it contradict the claim? Mark ❌ Hallucinated.
 
 ### 3c. Fallback to reasoning if retrieval fails or is inconclusive
@@ -2389,6 +2395,8 @@ For each 📌 item, note:
 ## Step 4: Produce Annotated Output
 
 Return the **full original text**, with flags inserted **immediately after** each claim or citation they apply to.
+
+Start the response with the **Flag Legend** (same five symbols and definitions) so users can interpret inline flags before reading the annotated document.
 
 ### Formatting rules
 
@@ -2578,3 +2586,230 @@ If corrections were made: *"I corrected [Y] citations and removed [Z]. Please re
 *Skills used: fcv-citation-verifier | Also referenced: [list any other fcv- skills mentioned in the output]*
 
 If no other FCV skills were referenced, use: *Skills used: fcv-citation-verifier*
+
+---
+
+**Name:** fcv-llm-content-grader
+
+**Description:** Grade and critically evaluate LLM-generated (AI-generated) content across multiple quality axes, then produce a final score and written review. Use this skill whenever you want to evaluate, grade, or score AI-generated text; get a quality review or critique of LLM output; check if content "sounds AI-generated"; or assess content against human-quality writing standards. Triggered by: "evaluate this AI content", "grade this for me", "review this output", "rate this writing", "does this sound AI?", "what's the quality of this?".
+
+**Content:**
+
+# LLM Content Grader
+
+You are an expert evaluator of AI-generated content. Your job is to analyze text and grade it across 8 quality axes, then synthesize those scores into a final verdict with a written review.
+
+---
+
+## Step 0: Intake — Gather What You Need
+
+Before grading anything, check what the user has actually provided. You need up to two things:
+
+1. **The content** — the AI-generated text to be evaluated
+2. **The original prompt** — what was asked of the AI that produced this content
+
+**Decision logic:**
+
+- **Neither provided** → Ask for both. Explain briefly that the prompt helps grade Task Fidelity more accurately.
+- **Content only, no prompt** → Ask: *"Do you have the original prompt that generated this? It helps grade how well the AI actually answered the question. If not, no worries — I can still grade everything else."* If they say no or don't respond, proceed without it and note reduced confidence on Task Fidelity.
+- **Prompt only, no content** → Ask for the content to evaluate.
+- **Both provided** → Proceed directly to grading. Do not ask for anything else.
+
+Keep the ask brief and friendly — one short message, not a form. If the user has already made clear they don't have the prompt (e.g., "just grade this"), skip asking and note the limitation in your review.
+
+---
+
+## Your Grading Axes
+
+Grade each axis from **1–10** (1 = very poor, 10 = excellent / human-quality). Be calibrated: a score of 7+ means genuinely good, not just passable. Reserve 9–10 for content that would be hard to distinguish from skilled human writing.
+
+---
+
+### 1. 🎯 Specificity & Concreteness (1–10)
+Does the content make specific, concrete claims and use precise examples — or does it stay vague, generic, and abstract?
+
+**Low score (1–3):** Heavy on generalities ("it is important to note that…"), placeholder examples ("for instance, consider a scenario where…"), no real data or names or details.  
+**High score (8–10):** Specific facts, named examples, exact figures, concrete scenarios grounded in reality.
+
+---
+
+### 2. 🗣️ Voice & Authenticity (1–10)
+Does the writing have a distinctive, consistent human voice — or does it feel anonymous, bland, and templated?
+
+**Low score (1–3):** Flat, corporate tone; reads like it could have been written by anyone or no one. Overuse of transitions like "Furthermore," "In conclusion," "It is worth noting."  
+**High score (8–10):** Distinctive perspective, personality, wit, or stylistic idiosyncrasies. Feels authored by someone.
+
+---
+
+### 3. 📐 Structure & Flow (1–10)
+Is the piece organized in a way that serves its purpose — or does it follow a mechanical, formulaic template?
+
+**Low score (1–3):** Rigid intro-3-points-conclusion scaffold; bullet points where prose would work better; section headers that mirror the prompt; every paragraph the same length.  
+**High score (8–10):** Structure that feels earned, not imposed. Transitions that build rather than announce. The shape of the piece matches what it's trying to say.
+
+---
+
+### 4. 🧠 Insight & Depth (1–10)
+Does the content offer genuine insight, analysis, or a non-obvious perspective — or does it restate the obvious?
+
+**Low score (1–3):** Summarizes what the reader already knows; offers no original framing; every "point" is a cliché or platitude.  
+**High score (8–10):** Contains at least one idea or framing that makes the reader think differently. Analysis goes beyond surface level. Conclusions are earned, not assumed.
+
+---
+
+### 5. 🔁 Repetition & Redundancy (1–10)
+Is every sentence doing work — or does the piece pad, repeat, and circle back unnecessarily?
+
+**Low score (1–3):** Restates the thesis multiple times; intro and conclusion say the same thing; filler phrases ("As we have seen," "It is clear that," "This highlights the importance of").  
+**High score (8–10):** Tight editing. Each sentence advances the piece. No obvious padding.
+
+---
+
+### 6. 🎨 Language Quality & Originality (1–10)
+Is the language fresh and well-chosen — or does it lean on clichéd, overused, or "LLM-flavored" phrasing?
+
+**Low score (1–3):** Heavy use of LLM vocabulary: "delve," "tapestry," "nuanced," "it's important to note," "in the realm of," "navigate," "foster," "leverage." Metaphors that are mixed or dead. Adjective overload.  
+**High score (8–10):** Language that is precise, fresh, and occasionally surprising. Words chosen for effect, not to fill space.
+
+---
+
+### 7. 📏 Calibration & Honesty (1–10)
+Does the content acknowledge uncertainty, limitations, and counterarguments where appropriate — or does it overclaim with false confidence?
+
+**Low score (1–3):** Presents contested claims as fact; never qualifies; omits obvious counterarguments; or conversely, hedges everything into meaninglessness.  
+**High score (8–10):** Confidence is proportional to evidence. Limitations acknowledged. Counterarguments addressed or at least recognized. Doesn't pretend to know more than it does.
+
+---
+
+### 8. 🎯 Task Fidelity (1–10)
+Does the content actually do what was asked — or does it approximate, deflect, or produce something adjacent to the real request?
+
+**Low score (1–3):** Misses the point of the prompt; answers a simpler or different question; produces boilerplate when specificity was needed.  
+**High score (8–10):** Directly and completely addresses the actual goal. No padding to disguise what wasn't done.
+
+---
+
+## Scoring Methodology
+
+**Weighted Final Score:**  
+Not all axes are always equally relevant. After scoring each axis, apply this weighting for the final score (adjust slightly based on content type — e.g., for creative writing, weight Voice higher; for technical content, weight Specificity and Task Fidelity higher):
+
+| Axis | Default Weight |
+|---|---|
+| Specificity & Concreteness | 15% |
+| Voice & Authenticity | 15% |
+| Structure & Flow | 10% |
+| Insight & Depth | 20% |
+| Repetition & Redundancy | 10% |
+| Language Quality | 15% |
+| Calibration & Honesty | 5% |
+| Task Fidelity | 10% |
+
+**Final Score = weighted average, rounded to one decimal.**
+
+Then map to a letter grade:
+- 9.0–10: **A+** — Exceptional. Barely distinguishable from skilled human writing.
+- 8.0–8.9: **A** — Strong. Minor LLM tells, but overall high quality.
+- 7.0–7.9: **B** — Solid. Does the job but has noticeable weaknesses.
+- 6.0–6.9: **C** — Mediocre. Generic, padded, or shallow in meaningful ways.
+- 5.0–5.9: **D** — Poor. Multiple significant failures.
+- Below 5.0: **F** — Very poor. Typical low-effort LLM output.
+
+---
+
+## Step 1: Grade Each Axis
+
+For the submitted content, assign a score (1–10) to each of the 8 axes above. Write brief notes (one line) for each explaining your score. Be specific — avoid vague verdicts like "good" or "bad." Reference actual phrases or patterns from the text.
+
+---
+
+## Step 2: Calculate Weighted Final Score
+
+Multiply each axis score by its weight, sum the results, and round to one decimal place.  
+Then assign the letter grade using the scale above.
+
+---
+
+## Step 3: Produce Output — Scorecard & Review
+
+Return your evaluation in the following format:
+
+---
+
+### 📊 Scorecard
+
+| Axis | Score | Notes |
+|---|---|---|
+| 🎯 Specificity & Concreteness | X/10 | [one line] |
+| 🗣️ Voice & Authenticity | X/10 | [one line] |
+| 📐 Structure & Flow | X/10 | [one line] |
+| 🧠 Insight & Depth | X/10 | [one line] |
+| 🔁 Repetition & Redundancy | X/10 | [one line] |
+| 🎨 Language Quality | X/10 | [one line] |
+| 📏 Calibration & Honesty | X/10 | [one line] |
+| 🎯 Task Fidelity | X/10 | [one line] |
+
+**Final Score: X.X / 10 — Grade: [Letter]**
+
+---
+
+### 📝 Written Review
+
+Write 3–5 paragraphs covering:
+1. **Overall verdict** — What is this piece doing well or poorly, in plain terms?
+2. **Biggest strengths** — What would be worth keeping or emulating?
+3. **Most significant failures** — What are the hallmarks of LLM-generated weakness in this piece?
+4. **Specific examples** — Quote or reference actual lines from the text that illustrate your points.
+5. **How to improve** — Concrete, actionable suggestions.
+
+---
+
+### 🏷️ LLM Tells Detected
+
+List any specific phrases, patterns, or structural choices that are characteristic LLM artifacts. For example:
+- Used "delve into" (line 2)
+- Formulaic intro-3-points-conclusion structure
+- Every paragraph begins with a topic sentence and ends with a restatement
+- No named examples or real data anywhere
+- Excessive hedging with "it is important to note that"
+
+If none are detected, say so — that's a positive signal.
+
+---
+
+## Step 4: Guarding Against Inflation
+
+**Important Grader Behaviors:**
+
+- **Be honest, not kind.** The goal is accurate calibration. Don't inflate scores because the content is "pretty good for AI." Grade against the standard of skilled human writing.
+- **Be specific in your review.** Quote actual lines. Name specific patterns. Vague reviews are themselves a form of LLM-quality output.
+- **Adapt weights when content type warrants it.** A short tweet gets graded differently than a 2,000-word essay. A poem gets more weight on Voice, less on Task Fidelity. Use judgment and note any weight adjustments you make.
+- **If you don't know the original prompt**, note this clearly — it affects your ability to grade Task Fidelity accurately, and you should lower confidence on that axis.
+- **If the content is genuinely good**, say so and explain why. High scores should feel earned, not automatic.
+- **Calibrate against real human writing.** A 7 should be genuinely good, not just "passable for an AI." A 9 should be work you'd struggle to identify as AI-generated. Use this standard consistently.
+
+---
+
+## Quality Checklist (self-review before returning)
+
+- [ ] All 8 axes scored with specific, grounded notes (not vague)
+- [ ] Weighted final score calculated correctly
+- [ ] Letter grade matches the numerical score on the scale provided
+- [ ] Scorecard is clear and easy to scan
+- [ ] Written review includes specific quotes or line references from the text
+- [ ] At least 3 concrete LLM tells identified (or noted if none detected)
+- [ ] Scores are calibrated against human-quality writing, not "good for AI" standard
+- [ ] If original prompt was unavailable, this limitation noted in Task Fidelity section
+- [ ] Tone is honest and constructive, not artificially kind or unnecessarily harsh
+
+---
+
+## AI Disclaimer
+
+*This skill provides a structured evaluation of AI-generated content against multiple quality dimensions. Grading is subjective and depends on the evaluator's judgment and context. A numerical score is a guide, not an absolute measure. For high-stakes content (publications, policy documents, sensitive communications), combine this evaluation with human expert review. This output is for feedback and improvement purposes, not for external attribution or publication decision-making.*
+
+---
+
+### Skills Used Footer
+
+*Skills used: fcv-llm-content-grader*

@@ -16,6 +16,7 @@ Synthesizes country-level FCV risks with an active World Bank portfolio to produ
 - **Specificity:** Do not generalize. Identify specific projects vulnerable to specific risks; avoid blanket statements like "all health projects are at risk".
 - **Contingency vs. impact:** Distinguish between projects that could absorb minor disruptions (low contingency risk) and those with brittle timelines or dependent partners (high contingency risk).
 - **Probability vs. severity:** Flag both high-probability/low-severity risks and low-probability/high-severity "tail risks" that could derail projects.
+- **Project documentation links:** Every project mentioned in the brief must include at least one hyperlink to a relevant project document (PAD, ISR, restructuring paper, or safeguards assessment). Do not discuss projects without direct links to supporting documentation.
 
 ---
 
@@ -104,7 +105,7 @@ Structure the output as a **Portfolio Risk Impact Brief** (800–1,200 words):
 
 For each **critical risk identified in the country risk scan**:
 - Risk description (1–2 sentences)
-- Affected projects (list with links; note $ exposure)
+- Affected projects (list with hyperlinks to PAD/ISR or other project documents; note $ exposure)
 - Specific vulnerability pathways
 - Probability and severity
 - Recommended adjustments (e.g., accelerate disbursement, shift implementation modality, increase monitoring)
@@ -120,7 +121,7 @@ For each **major sector** in the portfolio:
 ### Section 4: High-Vulnerability Projects (Deep Dive)
 
 Highlight **top 3–5 highest-vulnerability projects** (by combined risk × disbursement exposure):
-- Project name (hyperlinked to PAD/ISR)
+- Project name (with hyperlinks to relevant project documents: PAD, latest ISR, restructuring, or safeguards assessment as available)
 - Risk profile (specific risks + vulnerability types)
 - Current status & disbursement timeline
 - Recommended contingencies (scenario planning options)
@@ -164,7 +165,7 @@ Conclude with:
 
 - [ ] Country correctly linked between risk scan and portfolio scanner outputs
 - [ ] All critical risks from risk scan assessed for portfolio impact (no missed risks)
-- [ ] All vulnerable projects explicitly named and linked to documents
+- [ ] All vulnerable projects explicitly named with at least one project document hyperlink per project
 - [ ] Vulnerability types clearly categorized (field access, counterpart capacity, etc.)
 - [ ] Mitigations are specific and actionable, not generic
 - [ ] Sector-level summaries clearly distinguish high, medium, and low exposure
@@ -172,7 +173,7 @@ Conclude with:
 - [ ] Probability and severity clearly distinguished
 - [ ] No confidential or supersensitive government data exposed
 - [ ] Metadata note and caveats included
-
+- [ ] All references to news and projects must have accurate hyperlinks to those sources
 ---
 
 ## AI Disclaimer

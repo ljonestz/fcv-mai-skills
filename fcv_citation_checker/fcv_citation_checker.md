@@ -10,16 +10,6 @@ Audits a document for citation accuracy and unsourced factual claims. Returns an
 
 ---
 
-## Guardrails
-
-- **Verify the exact claim, not just the source:** Mark a citation as verified only if the linked or cited source supports the specific statement it appears to substantiate.
-- **Preserve the user's text:** Do not rewrite, paraphrase, or clean up the original document. Only insert flags and brief explanatory notes inline.
-- **Separate inaccessible from fabricated:** Use **Unverifiable** for plausible but inaccessible sources; reserve **Hallucinated / Dead** for fabricated, malformed, dead, or clearly contradictory citations.
-- **Flag concrete factual assertions:** Mark unsourced claims when they involve statistics, dates, named events, attributed statements, or other checkable facts. Do not over-flag general framing or analytical judgment.
-- **Work in scoped chunks if needed:** If the document is too long to check reliably in one pass, propose section-by-section review rather than rushing or skipping items.
-
----
-
 ## Flag Legend
 
 | Flag | Meaning |
@@ -29,6 +19,17 @@ Audits a document for citation accuracy and unsourced factual claims. Returns an
 | 🔶 | **Misrepresented** — Source exists and is live, but the claim distorts, overstates, or misattributes what it actually says |
 | ❌ | **Hallucinated / Dead** — URL returns 404, source doesn't exist, or claim is directly contradicted by the source |
 | 📌 | **Unsourced claim** — Specific factual assertion (statistic, event, attribution) with no citation that likely needs one |
+
+---
+
+## Guardrails
+
+- **Verify the exact claim, not just the source:** Mark a citation as verified only if the linked or cited source supports the specific statement it appears to substantiate.
+- **Treat non-specific or wrong destination links as citation problems:** A live link to a generic homepage or broad site section (for example, `crisisgroup.org`) is not sufficient when the claim requires a specific report/page.
+- **Preserve the user's text:** Do not rewrite, paraphrase, or clean up the original document. Only insert flags and brief explanatory notes inline.
+- **Separate inaccessible from fabricated:** Use **Unverifiable** for plausible but inaccessible sources; reserve **Hallucinated / Dead** for fabricated, malformed, dead, or clearly contradictory citations.
+- **Flag concrete factual assertions:** Mark unsourced claims when they involve statistics, dates, named events, attributed statements, or other checkable facts. Do not over-flag general framing or analytical judgment.
+- **Work in scoped chunks if needed:** If the document is too long to check reliably in one pass, propose section-by-section review rather than rushing or skipping items.
 
 ---
 
@@ -72,6 +73,7 @@ For every citation, follow this decision tree in order:
 If the page or source loaded:
 - Does the source actually support the specific claim made? Mark ✅ Verified.
 - Does the source exist but say something materially different, weaker, or unrelated? Mark 🔶 Misrepresented and note the discrepancy in one sentence.
+- Is the link live but too generic to locate the cited evidence (for example, a homepage, topic hub, or wrong page)? Mark 🔶 Misrepresented and note that a direct source link is required.
 - Is the source absent or does it contradict the claim? Mark ❌ Hallucinated.
 
 ### 3c. Fallback to reasoning if retrieval fails or is inconclusive
@@ -89,7 +91,10 @@ For each 📌 item, note:
 
 ## Step 4: Produce Annotated Output
 
-Return the **full original text**, with flags inserted **immediately after** each claim or citation they apply to.
+Start the response with the **Flag Legend** (same five symbols and definitions) so users can interpret inline flags before reading the annotated document.
+
+Next, return the **full original text**, with flags inserted **immediately after** each claim or citation they apply to.
+
 
 ### Formatting rules
 
